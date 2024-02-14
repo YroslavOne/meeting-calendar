@@ -1,6 +1,11 @@
+import Calendar from "./mainComponents/Calendar"
+
 function Main(){
     return(
-        <div>i am main</div>
+
+        <div>
+            <Calendar/>
+    </div>
     )
 
 }
