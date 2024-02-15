@@ -1,6 +1,5 @@
 function MonthByDay() {
-  const date = new Date(2024, 0, 1);
-  console.log(date);
+  const date = new Date(2024, 2, 1);
   let everyDayList = [];
 
   const month = [
@@ -33,26 +32,14 @@ function MonthByDay() {
   ];
   const LeapYear = new Date(date.getFullYear(), 2, 0);
 
-  console.log(`year: ${date.getFullYear()}`);
-  console.log(`month: ${month[date.getMonth()]}`);
-  console.log(`day week ${dayWeek[date.getDay()]}`);
-  console.log(`количество дней: ${chekedLeapYear(date)}`);
+//   console.log(`year: ${date.getFullYear()}`);
+//   console.log(`month: ${month[date.getMonth()]}`);
+//   console.log(`day week ${dayWeek[date.getDay()]}`);
+//   console.log(`количество дней: ${chekedLeapYear(date)}`);
 
   function chekedLeapYear(data) {
     let year = data.getFullYear();
     let LeapYear = new Date(year, 2, 0);
-    let monthValue = data.getMonth();
-    let day = LeapYear.getDate();
-    if (day === 29) {
-      return dayForMonthLeapYear[monthValue];
-    } else {
-      return dayForMonthNotLeapYear[monthValue];
-    }
-  }
-
-  function chekedNextYear(data) {
-    let year = data.getFullYear();
-    let nextYear = new Date(year, 2, 0);
     let monthValue = data.getMonth();
     let day = LeapYear.getDate();
     if (day === 29) {
@@ -82,6 +69,18 @@ function MonthByDay() {
           monthPreviously,
           amountDay
         );
+      }
+      return newYearAndMonth;
+    }
+
+    function chekedNextMonth(date) {
+      let monthPreviously = firstDay.getMonth() + 1;
+      let newYearAndMonth = date;
+      if (monthPreviously > 11) {
+        let updateYear = date.getFullYear() + 1;
+        newYearAndMonth = new Date(updateYear, 0, 1);
+      } else {
+        newYearAndMonth = new Date(date.getFullYear(), monthPreviously, 1);
       }
       return newYearAndMonth;
     }
@@ -126,6 +125,7 @@ function MonthByDay() {
       }
 
       let endDayWeek = 0;
+      let endNumberWeek;
 
       for (let j = 2; countDay <= maxDay; j++) {
         for (let i = 0; i < 7; i++) {
@@ -139,25 +139,24 @@ function MonthByDay() {
               week: j,
             });
             endDayWeek = i;
-            console.log("hi");
+            endNumberWeek = j;
           }
         }
       }
 
-      for (let i = endDayWeek + 1; i < 7; i++) {
-        if (countDay <= maxDay) {
-          countDay++;
-          everyDayWeekList.push({
-            yaer: firstDay.getFullYear(),
-            month: firstDay.getMonth(),
-            day: countDay,
-            dayWeek: i,
-            week: 1,
-          });
-        }
-      }
+      let endDate = chekedNextMonth(date);
+      let endDay = 1;
 
-      console.log(everyDayWeekList);
+      for (let i = endDayWeek + 1; i < 7; i++) {
+        everyDayWeekList.push({
+          yaer: endDate.getFullYear(),
+          month: endDate.getMonth(),
+          day: endDay,
+          dayWeek: i,
+          week: endNumberWeek,
+        });
+        endDay++;
+      }
     }
 
     function addDataInList(
