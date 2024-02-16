@@ -1,3 +1,4 @@
+import React, {useState, useContext} from 'react';
 import './App.css';
 import Main from './appComponents/Main.js';
 import { ContextProvider } from './Context.js';
