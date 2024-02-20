@@ -79,37 +79,43 @@ function Week() {
 
   let generationDayForWeek = weekByDay.map((objWeekByDay, index) => {
     return (
-      <td>
-        {dayForWeek[index].dayWeek}
-        <th>{objWeekByDay.day}</th>
-       { objWeekByDay.day === undefined? 
-(hoursPerDay.map((hour) => (
-    <tr>
-      <td>{hour}</td>
-    </tr>
-  ))):  
-           ( hoursPerDay.map((hour) => (
-                <tr>
-                  <td>none</td>
-                </tr>
-              )))
-        }
+        <th><div>{dayForWeek[index].dayWeek}</div><div>{objWeekByDay.day}</div></th>
+
+//       <td>
+        
+//         <th><div>{dayForWeek[index].dayWeek}</div><div>{objWeekByDay.day}</div></th>
+//        { objWeekByDay.day === undefined? 
+// (hoursPerDay.map((hour) => (
+//     <tr>
+//       <td>{hour}</td>
+//     </tr>
+//   ))):  
+//            ( hoursPerDay.map((hour) => (
+//                 <tr>
+//                   <td>none</td>
+//                 </tr>
+//               )))
+//         }
     
-      </td>
+//       </td>
     );
   });
+  let generationHourForWeek = hoursPerDay.map((hour) => (<tr><td>{hour}</td>{weekByDay.map((day)=> day.day?(<td>day</td>):"")}</tr>))
 
   return (
-    <table>
-      {/* <td>
-        none
-        <tr>same none</tr>
-        {hoursPerDay.map((hour) => (
-          <tr>{hour}</tr>
-        ))}
-      </td> */}
+    <table width="100%" border="1" cellpadding="4" cellspacing="0">
+       <thead>
+    <tr>
+    {generationDayForWeek}
+      
+    </tr>
+  </thead>
 
-      {generationDayForWeek}
+  <tbody>
+    <tr>
+    </tr>
+  </tbody>
+{generationHourForWeek}
     </table>
   );
 }
