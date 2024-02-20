@@ -16,7 +16,7 @@ return(
     <div>
         <Month/>
         <Week/>
-        <MonthByDay date={dateValue}/>
+       
         hi i week or month
     </div>
 )

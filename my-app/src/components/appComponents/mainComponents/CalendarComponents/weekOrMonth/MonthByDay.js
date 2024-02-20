@@ -1,5 +1,5 @@
-function MonthByDay(props) {
-  const date = props.date;
+function MonthByDay(dateForCalculations) {
+  const date = dateForCalculations;
   const today = new Date();
   console.log(date)
   let everyDayWeekList = [];
@@ -186,7 +186,7 @@ function MonthByDay(props) {
       });
     }
   }
-   console.log(everyDayWeekList)
+   return(everyDayWeekList)
 }
 
 export default MonthByDay;
