@@ -77,7 +77,7 @@ function Week() {
 
   let generationDayForWeek = weekByDay.map((objWeekByDay, index) => {
     return (
-      <th>
+      <th className="day-for-week">
         <div>{dayForWeek[index].dayWeek}</div>
         <div>{objWeekByDay.day}</div>
       </th>
@@ -86,14 +86,14 @@ function Week() {
   let generationHourForWeek = hoursPerDay.map((hour) => (
     <tr>
       <td className="hour-week"><div className="hour-week-div">{hour}</div></td>
-      {weekByDay.map((day) => (day.day ? <td className="hour-weer-cell">day</td> : ""))}
+      {weekByDay.map((day) => (day.day ? <td className="hour-weer-cell"><div></div></td> : ""))}
     </tr>
   ));
 
   return (
-    <table width="100%" border="0" cellpadding="15" cellspacing="0">
+    <table width="100%" ALIGN="center" cellpadding="15px" cellspacing="0">
       <thead>
-        <tr>{generationDayForWeek}</tr>
+        <tr className="">{generationDayForWeek}</tr>
       </thead>
 
       <tbody>
