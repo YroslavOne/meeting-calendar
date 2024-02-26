@@ -1,32 +1,31 @@
 function MonthByDay(dateForCalculations) {
   const date = dateForCalculations;
   const today = new Date();
-  console.log(date)
   let everyDayWeekList = [];
 
   const month = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
 
   const dayWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
   ];
   const dayForMonthLeapYear = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const dayForMonthNotLeapYear = [
@@ -44,18 +43,20 @@ function MonthByDay(dateForCalculations) {
     }
   }
 
-  function chekedToday(yaerValue, monthValue, dayValue){
-    if(yaerValue===today.getFullYear() && monthValue===today.getMonth() && dayValue ===today.getDate()){
-        return true
-
+  function chekedToday(yaerValue, monthValue, dayValue) {
+    if (
+      yaerValue === today.getFullYear() &&
+      monthValue === today.getMonth() &&
+      dayValue === today.getDate()
+    ) {
+      return true;
     } else {
-        return false
+      return false;
     }
   }
 
   daysByWeeks();
   function daysByWeeks() {
-    
     let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
     let previousMonth = chekedPrevisionMonth(firstDay);
 
@@ -126,7 +127,11 @@ function MonthByDay(dateForCalculations) {
             day: countDay,
             dayWeek: i,
             week: 1,
-            today: chekedToday(firstDay.getFullYear(), firstDay.getMonth(), countDay),
+            today: chekedToday(
+              firstDay.getFullYear(),
+              firstDay.getMonth(),
+              countDay
+            ),
           });
         }
       }
@@ -144,7 +149,11 @@ function MonthByDay(dateForCalculations) {
               day: countDay,
               dayWeek: i,
               week: j,
-              today: chekedToday(firstDay.getFullYear(), firstDay.getMonth(), countDay),
+              today: chekedToday(
+                firstDay.getFullYear(),
+                firstDay.getMonth(),
+                countDay
+              ),
             });
             endDayWeek = i;
             endNumberWeek = j;
@@ -162,7 +171,7 @@ function MonthByDay(dateForCalculations) {
           day: endDay,
           dayWeek: i,
           week: endNumberWeek,
-          today: false
+          today: false,
         });
         endDay++;
       }
@@ -186,7 +195,7 @@ function MonthByDay(dateForCalculations) {
       });
     }
   }
-   return(everyDayWeekList)
+  return everyDayWeekList;
 }
 
 export default MonthByDay;
