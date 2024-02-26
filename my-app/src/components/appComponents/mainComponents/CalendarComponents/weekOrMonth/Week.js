@@ -1,4 +1,5 @@
 import MonthByDay from "./MonthByDay";
+import "./Week.css"
 
 function Week() {
   let dateForCalculations = new Date();
@@ -35,9 +36,6 @@ function Week() {
     },
   ];
 
-  console.log(tasks);
-  console.log(dateForCalculations.getDay());
-
   let oneMonth = MonthByDay(dateForCalculations);
   let numberWeek = oneMonth.filter(
     (filterOneMonth) =>
@@ -61,13 +59,13 @@ function Week() {
 
   const dayForWeek = [
     { dayWeek: "" },
-    { dayWeek: "sun" },
     { dayWeek: "mon" },
     { dayWeek: "tue" },
     { dayWeek: "wed" },
     { dayWeek: "thu" },
     { dayWeek: "fri" },
     { dayWeek: "sat" },
+    { dayWeek: "sun" },
   ];
   let hoursPerDay = [];
   for (let i = 0; i < 2; i++) {
@@ -79,43 +77,29 @@ function Week() {
 
   let generationDayForWeek = weekByDay.map((objWeekByDay, index) => {
     return (
-        <th><div>{dayForWeek[index].dayWeek}</div><div>{objWeekByDay.day}</div></th>
-
-//       <td>
-        
-//         <th><div>{dayForWeek[index].dayWeek}</div><div>{objWeekByDay.day}</div></th>
-//        { objWeekByDay.day === undefined? 
-// (hoursPerDay.map((hour) => (
-//     <tr>
-//       <td>{hour}</td>
-//     </tr>
-//   ))):  
-//            ( hoursPerDay.map((hour) => (
-//                 <tr>
-//                   <td>none</td>
-//                 </tr>
-//               )))
-//         }
-    
-//       </td>
+      <th>
+        <div>{dayForWeek[index].dayWeek}</div>
+        <div>{objWeekByDay.day}</div>
+      </th>
     );
   });
-  let generationHourForWeek = hoursPerDay.map((hour) => (<tr><td>{hour}</td>{weekByDay.map((day)=> day.day?(<td>day</td>):"")}</tr>))
+  let generationHourForWeek = hoursPerDay.map((hour) => (
+    <tr>
+      <td className="hour-week"><div className="hour-week-div">{hour}</div></td>
+      {weekByDay.map((day) => (day.day ? <td className="hour-weer-cell">day</td> : ""))}
+    </tr>
+  ));
 
   return (
-    <table width="100%" border="1" cellpadding="4" cellspacing="0">
-       <thead>
-    <tr>
-    {generationDayForWeek}
-      
-    </tr>
-  </thead>
+    <table width="100%" border="0" cellpadding="15" cellspacing="0">
+      <thead>
+        <tr>{generationDayForWeek}</tr>
+      </thead>
 
-  <tbody>
-    <tr>
-    </tr>
-  </tbody>
-{generationHourForWeek}
+      <tbody>
+        <tr></tr>
+      </tbody>
+      {generationHourForWeek}
     </table>
   );
 }
