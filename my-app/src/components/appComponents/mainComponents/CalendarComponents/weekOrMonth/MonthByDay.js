@@ -98,7 +98,7 @@ function MonthByDay(dateForCalculations) {
           previousMonth.getMonth(),
           previousMonth.getDate() - dayWeek + i + 1,
           i,
-          1,
+          0,
           false
         );
       }
@@ -113,10 +113,10 @@ function MonthByDay(dateForCalculations) {
         firstDay.getMonth(),
         countDay,
         dayWeek,
-        1,
+        0,
         chekedToday(firstDay.getFullYear(), firstDay.getMonth(), countDay)
       );
-      countDay = 2;
+      countDay = 1;
 
       for (let i = dayWeek + 1; i < 7; i++) {
         if (countDay <= maxDay) {
@@ -126,7 +126,7 @@ function MonthByDay(dateForCalculations) {
             month: firstDay.getMonth(),
             day: countDay,
             dayWeek: i,
-            week: 1,
+            week: 0,
             today: chekedToday(
               firstDay.getFullYear(),
               firstDay.getMonth(),
@@ -139,7 +139,7 @@ function MonthByDay(dateForCalculations) {
       let endDayWeek = 0;
       let endNumberWeek;
 
-      for (let j = 2; countDay <= maxDay; j++) {
+      for (let j = 1; countDay <= maxDay; j++) {
         for (let i = 0; i < 7; i++) {
           countDay++;
           if (countDay < maxDay) {
