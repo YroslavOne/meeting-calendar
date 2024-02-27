@@ -1,5 +1,6 @@
 import MonthByDay from "./MonthByDay";
 import Week from "./Week";
+import "./Month.css";
 
 function Month() {
   const dayForWeek = [
@@ -15,27 +16,32 @@ function Month() {
   let month = [];
 
   let dateForCalculations = new Date();
+  let nowMonth = dateForCalculations.getMonth();
+
   let oneMonth = MonthByDay(dateForCalculations);
-  console.log(oneMonth);
+  console.log(nowMonth);
 
   function createMonth() {
     month = [[], [], [], [], [], [], []];
     oneMonth.map((oneMonth) => {
-      month[oneMonth.week][oneMonth.dayWeek] = { day: oneMonth.day, month: oneMonth.month };
+      month[oneMonth.week][oneMonth.dayWeek] = {
+        day: oneMonth.day,
+        month: oneMonth.month === nowMonth,
+      };
     });
     return month;
   }
   console.log(createMonth());
 
-  let sortThroughDay = createMonth().map((week)=>
-  <tr>
-    {week.map((day)=>
-    <td>
-    <div>{day.day}</div>
-  </td>
-    )}
-  </tr>
-  )
+  let sortThroughDay = createMonth().map((week) => (
+    <tr>
+      {week.map((day) => (
+        <td>
+          <div className={day.month ? "" : "color"}>{day.day}</div>
+        </td>
+      ))}
+    </tr>
+  ));
 
   let generationDayWeek = dayForWeek.map((objWeekByDay) => {
     return (
