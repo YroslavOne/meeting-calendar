@@ -39,46 +39,78 @@ input .create-meeting-name{
     margin-top: 20px;
     margin-bottom: 20px;
 }
-.icon-clock-create-meeting{
+.icon-create-meeting{
     color:  #8C8B90;
+    margin: 0;
+    margin-right: 10px;
 }
 
 .create-meeting-time{
     text-align: left;
     margin: 0;
-    margin-top: 20px;
     margin-bottom: 0px;
+    display: flex;
+    align-items: center;
 }
 .create-meeting-location{
+    margin-top: 5px;
     width: 100%;
     text-align: left;
+    display: flex;
+    align-items: center;
 }
 .create-meeting-description{
+    margin-top: 5px;
     width: 100%;
     text-align: left;
+    display: flex;
+    align-items: center;
 }
 .create-meeting-location input{
-    margin-left: 10px;
-
     outline: 0 !important;
     border: none;
-    border: 1px solid none;
-    color:  #8C8B90;
+    border: 1px solid transparent;
 
 }
 .create-meeting-description input{
-    margin-left: 10px;
     outline: 0 !important;
     border: none;
-    border: 1px solid none;
-    color:  #8C8B90;
+    border: 1px solid transparent;
 }
 .create-meeting-description input:focus{
-    color: black;
     border-bottom: 1px solid #7550F6;
 }
 
 .create-meeting-location input:focus{
-    color: black;
     border-bottom: 1px solid #7550F6;
+}
+.create-meeting-data-and-time{
+    display: flex;
+    margin-top: 20px;
+}
+.create-meeting-data-and-time svg{
+    margin-top: 2px;
+}
+.create-meeting-button{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.create-meeting-button button{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: white;
+    background: #7550F6;
+}
+/* button{
+    list-style: none;
+} */
+.create-meeting-button button:hover{
+    border: 1px solid #7550F6;
+    border-radius: 5px;
+    background: white;
+    color: #7550F6;
 }
