@@ -1,16 +1,17 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Context } from '../../../../Context';
 // import { ChatRight, Kanban, Motherboard, Telephone } from "react-bootstrap-icons";
 
-function MeetingType() {
+function MeetingType(props) {
   const { meetingItems } = useContext(Context);
-
+  const [meetingType, setMeetingType]= useState("")
+props.setMeetingType(meetingType)
   return (
     <div>
       <h5>Meeting type</h5>
       <div>
         {meetingItems.map((nameMeeting) => (
-          <div className={nameMeeting.className}>
+          <div onClick={(e)=>setMeetingType(nameMeeting)} className={nameMeeting.className}>
             {nameMeeting.icon}
             {nameMeeting.name}
           </div>

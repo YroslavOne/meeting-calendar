@@ -5,7 +5,6 @@ import CreateTask from './mainComponents/CreateTask/CreateTask';
 function Main() {
   return (
     <div>
-      hi
       {/* <Calendar/> */}
       <CreateTask />
     </div>

@@ -1,0 +1,31 @@
+.react-time-picker__button{
+    display: none;
+
+}
+.react-time-picker__clock{
+    display: none;
+}
+.react-time-picker__inputGroup{
+    border: none;
+}
+.react-time-picker__wrapper{
+    border: none;
+
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -o-appearance: none;
+    appearance: none;   
+    
+  }
+  .react-time-picker__inputGroup__amPm{
+    -webkit-appearance: none;
+  /* padding: 8px 30px 8px 8px; */
+  /* border: 1px solid #ccc; */
+  appearance: none;
+  /* border-radius: 7px;  */
+  /* width: auto;   */
+
+  }
