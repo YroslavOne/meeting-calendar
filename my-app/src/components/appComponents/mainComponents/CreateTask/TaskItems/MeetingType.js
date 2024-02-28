@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { Context } from '../../../../Context';
+import "./MeetingType.css"
 // import { ChatRight, Kanban, Motherboard, Telephone } from "react-bootstrap-icons";
 
 function MeetingType(props) {
@@ -7,16 +8,16 @@ function MeetingType(props) {
   const [meetingType, setMeetingType]= useState("")
 props.setMeetingType(meetingType)
   return (
-    <div>
-      <h5>Meeting type</h5>
-      <div>
+    <div className='meeting-type'>
+      <h5 className='meeting-type-title'>Meeting type</h5>
+      <ul className='meeting-type-items'>
         {meetingItems.map((nameMeeting) => (
-          <div onClick={(e)=>setMeetingType(nameMeeting)} className={nameMeeting.className}>
+          <li className='meeting-type-item' onClick={(e)=>setMeetingType(nameMeeting)} style={{color: "rgba("+nameMeeting.color+")", background: "rgba("+nameMeeting.background+")"}}>
             {nameMeeting.icon}
-            {nameMeeting.name}
-          </div>
+            <p>{nameMeeting.name}</p>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

@@ -1,12 +1,12 @@
 // import Calendar from './mainComponents/Calendar';
 // import { useState } from 'react';
-import CreateTask from './mainComponents/CreateTask/CreateTask';
+import CreateMeeting from './mainComponents/CreateTask/CreateMeeting';
 
 function Main() {
   return (
     <div>
       {/* <Calendar/> */}
-      <CreateTask />
+      <CreateMeeting />
     </div>
   );
 }

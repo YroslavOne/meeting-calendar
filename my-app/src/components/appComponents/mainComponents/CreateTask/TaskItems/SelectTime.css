@@ -29,3 +29,23 @@ select {
   /* width: auto;   */
 
   }
+  .react-time-picker__inputGroup__input{
+    cursor: pointer;
+  }
+  .react-time-picker__inputGroup{
+    font-size: 14px;
+}
+.react-time-picker__wrapper input:focus {
+    outline: 1px solid #8C8B90;
+    background: transparent;
+
+}
+.react-time-picker__wrapper select:focus {
+    outline: 1px solid #8C8B90;
+    background: transparent;
+
+}
+.react-time-picker__wrapper input {
+    background-color: transparent;
+
+}

@@ -11,22 +11,26 @@ export const ContextProvider = ({ children }) => {
     {
       icon: <Kanban/>,
       name: "Project meeting",
-      className: "red",
+      background: "122, 89, 240, 0.3",
+      color: "122, 89, 240, 1",
     },
     {
       icon: <ChatRight/>,
       name: "Meeting",
-      className: "red",
+      background: "9, 179, 196, 0.3",
+      color: "9, 179, 196, 1",
     },
     {
       icon: <Telephone/>,
       name: "Call",
-      className: "red",
+      background: "238, 149, 21, 0.3",
+      color: "238, 149, 21, 1",
     },
     {
       icon: <Motherboard/>,
       name: "Other",
-      className: "red",
+      background: "255, 88, 99, 0.3",
+      color: "255, 88, 99, 1",
     },
   ];
 

@@ -1,0 +1,84 @@
+input{
+    list-style: none;
+}
+.create-meeting{
+    width: 20%;
+    box-shadow: 0px 0px 10px #8C8B90;
+    border: 1px solid #8C8B90;
+    border-radius: 5px;
+    padding: 10px;
+}
+.create-meeting-name{
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+input .create-meeting-name{
+    outline: 0 !important;
+
+}
+.create-meeting-name{
+    font-weight: 700;
+    font-size: 18px;
+    border-bottom: 2px solid rgba(245, 40, 145, 0);
+
+}
+.create-meeting-name:focus{
+    border-bottom: 2px solid #7550F6;
+    outline: 0;
+    outline-offset: 0;
+    box-shadow: none;
+    outline: 0 !important;
+}
+.line{
+    content: "";
+    width: 100%;
+    height: 1px;
+    background: #8C8B90;
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.icon-clock-create-meeting{
+    color:  #8C8B90;
+}
+
+.create-meeting-time{
+    text-align: left;
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+.create-meeting-location{
+    width: 100%;
+    text-align: left;
+}
+.create-meeting-description{
+    width: 100%;
+    text-align: left;
+}
+.create-meeting-location input{
+    margin-left: 10px;
+
+    outline: 0 !important;
+    border: none;
+    border: 1px solid none;
+    color:  #8C8B90;
+
+}
+.create-meeting-description input{
+    margin-left: 10px;
+    outline: 0 !important;
+    border: none;
+    border: 1px solid none;
+    color:  #8C8B90;
+}
+.create-meeting-description input:focus{
+    color: black;
+    border-bottom: 1px solid #7550F6;
+}
+
+.create-meeting-location input:focus{
+    color: black;
+    border-bottom: 1px solid #7550F6;
+}

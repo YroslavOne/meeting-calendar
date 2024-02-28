@@ -8,9 +8,7 @@ function SelectTime(props) {
   const [value, onChange] = useState('22:00');
 props.setSelectedTime(value)
   return (
-    <div>
       <TimePicker onChange={onChange} value={value} locale='en-us'/>
-    </div>
   );
 }
 export default SelectTime;
