@@ -1,7 +1,10 @@
+import { useContext } from 'react';
+import { Context } from '../../../../Context';
 import MonthByDay from './MonthByDay';
 import './Week.css';
 
 function Week() {
+  const { meetings } = useContext(Context);
   let dateForCalculations = new Date();
   let tasks = [
     {
@@ -37,17 +40,18 @@ function Week() {
   ];
 
   let oneMonth = MonthByDay(dateForCalculations);
+  console.log(oneMonth);
+
   let numberWeek = oneMonth.filter(
     (filterOneMonth) =>
       filterOneMonth.month === dateForCalculations.getMonth() &&
       filterOneMonth.day === dateForCalculations.getDate()
   );
-  console.log(numberWeek[0].week);
-  // let oneWeekByDay =  oneMonth.filter((filterOneMonth)=> )
+  console.log(numberWeek);
   let weekByDay = oneMonth.filter(
     (filterOneMonth) => filterOneMonth.week === numberWeek[0].week
   );
-  console.log(weekByDay);
+
   weekByDay.unshift({
     year: 2023,
     month: 0,
@@ -91,7 +95,7 @@ function Week() {
       {weekByDay.map((day) =>
         day.day ? (
           <td className="hour-weer-cell">
-            <div></div>
+            <div>{checkingMeetingNow(hour, day.day)}</div>
           </td>
         ) : (
           ''
@@ -99,6 +103,26 @@ function Week() {
       )}
     </tr>
   ));
+
+  function checkingMeetingNow(hour, day) {
+    let result;
+    meetings.map((meeting) => {
+      const hourMeetingStart =
+        meeting.timeStart[0] < 12
+          ? meeting.timeStart[0] + 'am'
+          : meeting.timeStart[0] - 12 + 'pm';
+      console.log(hourMeetingStart);
+
+      if (meeting.Date[2] === day && hour === hourMeetingStart) {
+        result = 'hi';
+        console.log('yes');
+      } else {
+        result = '';
+        console.log('no');
+      }
+    });
+    return result;
+  }
 
   return (
     <table width="100%" ALIGN="center" cellpadding="15px" cellspacing="0">

@@ -59,6 +59,7 @@ export const ContextProvider = ({ children }) => {
       location: 'Here',
       description: 'you need to study the program',
       key: uuidv4(),
+      completed: false,
     },
   ];
 

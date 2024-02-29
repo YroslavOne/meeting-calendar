@@ -1,37 +1,37 @@
-import { Clock, GeoAlt, TextLeft } from "react-bootstrap-icons";
-import MeetingType from "./TaskItems/MeetingType";
-import SelectDate from "./TaskItems/SelectDate";
-import SelectTime from "./TaskItems/SelectTime";
-import { useContext, useState } from "react";
-import "./CreateMeeting.css";
-import { Context } from "../../../Context";
-import { v4 as uuidv4 } from "uuid";
-import EnterName from "./TaskItems/EnterName";
-import LocationAndDescription from "./TaskItems/LocationAndDescription";
+import { Clock, GeoAlt, TextLeft } from 'react-bootstrap-icons';
+import MeetingType from './TaskItems/MeetingType';
+import SelectDate from './TaskItems/SelectDate';
+import SelectTime from './TaskItems/SelectTime';
+import { useContext, useState } from 'react';
+import './CreateMeeting.css';
+import { Context } from '../../../Context';
+import { v4 as uuidv4 } from 'uuid';
+import EnterName from './TaskItems/EnterName';
+import LocationAndDescription from './TaskItems/LocationAndDescription';
 
 function CreateMeeting() {
   const { meetings, setMeetings } = useContext(Context);
-  const [nameMeeting, setNameMeeting] = useState("new meeting");
+  const [nameMeeting, setNameMeeting] = useState('new meeting');
   const [meetingType, setMeetingType] = useState({
-    background: "122, 89, 240, 0.3",
-    color: "122, 89, 240, 1",
-    name: "Project meeting",
+    background: '122, 89, 240, 0.3',
+    color: '122, 89, 240, 1',
+    name: 'Project meeting',
   });
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTimeStart, setSelectedTimeStart] = useState(
-    new Date().getHours() + ":" + new Date().getMinutes()
+    new Date().getHours() + ':' + new Date().getMinutes()
   );
   const [selectedTimeEnd, setSelectedTimeEnd] = useState(
-    new Date().getHours() + 1 + ":" + new Date().getMinutes()
+    new Date().getHours() + 1 + ':' + new Date().getMinutes()
   );
-  const [addLocation, setAddLocation] = useState("");
-  const [addDescription, setAddDescription] = useState("");
+  const [addLocation, setAddLocation] = useState('');
+  const [addDescription, setAddDescription] = useState('');
   const [editOrNewMeeting, setEditOrNewMeeting] = useState(true);
   const [interactionWithTask, setInteractionWithTask] = useState(true);
 
   function saveOrCreateMeeting(value) {
-    if (value === "Create meeting") {
-      console.log("Create meeting");
+    if (value === 'Create meeting') {
+      console.log('Create meeting');
       setMeetings(addMeeting());
     } else {
     }
@@ -68,9 +68,9 @@ function CreateMeeting() {
         <div className="create-meeting-button">
           <button
             onClick={(e) => saveOrCreateMeeting(e.target.value)}
-            value={editOrNewMeeting ? "Save meeting" : "Create meeting"}
+            value={editOrNewMeeting ? 'Save meeting' : 'Create meeting'}
           >
-            {editOrNewMeeting ? "Save meeting" : "Create meeting"}
+            {editOrNewMeeting ? 'Save meeting' : 'Create meeting'}
           </button>
           {editOrNewMeeting && <button>Delete meeting</button>}
         </div>
@@ -78,7 +78,7 @@ function CreateMeeting() {
     } else {
       return (
         <div className="create-meeting-button">
-          <button>The meeting took place</button>
+          <button>Complete</button>
           <button onClick={() => setInteractionWithTask(!interactionWithTask)}>
             Edit
           </button>
@@ -123,8 +123,23 @@ function CreateMeeting() {
           />
         </div>
       </div>
-<LocationAndDescription addLocation={addLocation} setAddLocation={setAddLocation} addDescription={addDescription} setAddDescription={setAddDescription} interactionWithTask={interactionWithTask}/>
-      
+      <LocationAndDescription
+        icon={<GeoAlt className="icon-create-meeting" />}
+        value={addLocation}
+        setValue={setAddLocation}
+        addDescription={addDescription}
+        setAddDescription={setAddDescription}
+        interactionWithTask={interactionWithTask}
+        placeholder={'Add location'}
+      />
+      <LocationAndDescription
+        icon={<TextLeft className="icon-create-meeting" />}
+        value={addDescription}
+        setValue={setAddDescription}
+        interactionWithTask={interactionWithTask}
+        placeholder={'Add description'}
+      />
+
       {workingWithTask()}
     </div>
   );

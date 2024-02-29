@@ -1,28 +1,30 @@
-import e from "express"
+import { GeoAlt } from 'react-bootstrap-icons';
+import './LocationAndDescription.css';
 
-function LocationAndDescription(props){
-
-if(props.interactionWithTask){
-
-} else{
-    
+function LocationAndDescription(props) {
+  if (props.interactionWithTask) {
+    return (
+      <div className="create-meeting-location-and-description">
+        {props.icon}
+        <div
+          onChange={(e) => props.setValue(e.target.value)}
+          placeholder={props.placeholder}
+        >
+          {props.value != null ? props.placeholder : props.value}
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="create-meeting-location-and-description">
+        {props.icon}
+        <input
+          value={props.value}
+          onChange={(e) => props.setValue(e.target.value)}
+          placeholder={props.placeholder}
+        ></input>
+      </div>
+    );
+  }
 }
-
-    return(<div className="create-meeting-location">
-    <GeoAlt className="icon-create-meeting" />
-    <input
-      value={props.addLocation}
-      onChange={(e) => props.setAddLocation(e.target.value)}
-      placeholder="Add location"
-    ></input>
-  </div>
-  <div className="create-meeting-description">
-    <TextLeft className="icon-create-meeting" />
-    <input
-      value={props.addDescription}
-      onChange={(e) => props.setAddDescription(e.target.value)}
-      placeholder="Add description"
-    ></input>
-  </div>)
-}
-export default LocationAndDescription
+export default LocationAndDescription;
