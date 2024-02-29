@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import "./CreateMeeting.css";
 import { Context } from "../../../Context";
 import { v4 as uuidv4 } from "uuid";
+import EnterName from "./TaskItems/EnterName";
 
 function CreateMeeting() {
   const { meetings, setMeetings } = useContext(Context);
@@ -87,13 +88,16 @@ function CreateMeeting() {
 
   return (
     <div className="create-meeting">
-      <input
-        className="create-meeting-name"
-        value={nameMeeting}
-        onChange={(e) => setNameMeeting(e.target.value)}
-        placeholder="name task"
-      ></input>
-      <MeetingType meetingType={meetingType} setMeetingType={setMeetingType} />
+      <EnterName
+        nameMeeting={nameMeeting}
+        setNameMeeting={setNameMeeting}
+        interactionWithTask={interactionWithTask}
+      />
+      <MeetingType
+        meetingType={meetingType}
+        setMeetingType={setMeetingType}
+        interactionWithTask={interactionWithTask}
+      />
       <div className="line"></div>
       <div className="create-meeting-data-and-time">
         <Clock className="icon-create-meeting" />
@@ -112,7 +116,7 @@ function CreateMeeting() {
             />
           </div>
           <SelectDate
-          interactionWithTask={interactionWithTask}
+            interactionWithTask={interactionWithTask}
             selectedDate={selectedDate}
             setSelectedDate={setSelectedDate}
           />

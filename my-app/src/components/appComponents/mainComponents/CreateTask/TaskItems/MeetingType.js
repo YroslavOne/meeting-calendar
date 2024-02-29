@@ -1,23 +1,19 @@
-import { useContext, useState } from 'react';
-import { Context } from '../../../../Context';
-import './MeetingType.css';
-// import { ChatRight, Kanban, Motherboard, Telephone } from "react-bootstrap-icons";
+import { useContext, useState } from "react";
+import { Context } from "../../../../Context";
+import "./MeetingType.css";
 
 function MeetingType(props) {
   const { meetingItems } = useContext(Context);
-  // const [meetingType, setMeetingType] = useState(props.meetingType);
+
   function updateMeetingType(allValuesTypeMeeting) {
     let temporaryStorageForType = {
       background: allValuesTypeMeeting.background,
       color: allValuesTypeMeeting.color,
       name: allValuesTypeMeeting.name,
     };
-    props.setMeetingType(temporaryStorageForType);
+    !props.interactionWithTask && props.setMeetingType(temporaryStorageForType);
   }
 
-  // props.setMeetingType(meetingType);
-
-  // console.log(meetingType.name);
   return (
     <div className="meeting-type">
       <h5 className="meeting-type-title">Meeting type</h5>
@@ -29,12 +25,12 @@ function MeetingType(props) {
             style={
               props.meetingType.name === nameMeeting.name
                 ? {
-                    color: 'white',
-                    background: 'rgba(' + nameMeeting.color + ')',
+                    color: "white",
+                    background: "rgba(" + nameMeeting.color + ")",
                   }
                 : {
-                    color: 'rgba(' + nameMeeting.color + ')',
-                    background: 'rgba(' + nameMeeting.background + ')',
+                    color: "rgba(" + nameMeeting.color + ")",
+                    background: "rgba(" + nameMeeting.background + ")",
                   }
             }
           >
