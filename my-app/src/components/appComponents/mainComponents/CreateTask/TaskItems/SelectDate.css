@@ -24,3 +24,16 @@
     color: black;
     border-bottom: 1px solid #7550F6;
 }
+.data-no-edit{
+    border: none;
+    outline: 0 !important;
+    margin: 0;
+    color:  #8C8B90;
+    text-align: left;
+    align-items: left;
+    font-size: 12px;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: left;
+    text-transform: capitalize;
+}
