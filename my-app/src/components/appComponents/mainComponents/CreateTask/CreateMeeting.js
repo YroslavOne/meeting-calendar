@@ -7,6 +7,7 @@ import "./CreateMeeting.css";
 import { Context } from "../../../Context";
 import { v4 as uuidv4 } from "uuid";
 import EnterName from "./TaskItems/EnterName";
+import LocationAndDescription from "./TaskItems/LocationAndDescription";
 
 function CreateMeeting() {
   const { meetings, setMeetings } = useContext(Context);
@@ -122,23 +123,8 @@ function CreateMeeting() {
           />
         </div>
       </div>
-
-      <div className="create-meeting-location">
-        <GeoAlt className="icon-create-meeting" />
-        <input
-          value={addLocation}
-          onChange={(e) => setAddLocation(e.target.value)}
-          placeholder="Add location"
-        ></input>
-      </div>
-      <div className="create-meeting-description">
-        <TextLeft className="icon-create-meeting" />
-        <input
-          value={addDescription}
-          onChange={(e) => setAddDescription(e.target.value)}
-          placeholder="Add description"
-        ></input>
-      </div>
+<LocationAndDescription addLocation={addLocation} setAddLocation={setAddLocation} addDescription={addDescription} setAddDescription={setAddDescription} interactionWithTask={interactionWithTask}/>
+      
       {workingWithTask()}
     </div>
   );
