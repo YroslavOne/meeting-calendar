@@ -24,7 +24,8 @@ function CreateMeeting() {
   );
   const [addLocation, setAddLocation] = useState('');
   const [addDescription, setAddDescription] = useState('');
-  const [newMeeting, setNewMeeting] = useState(false);
+  const [newMeeting, setNewMeeting] = useState(true);
+  const [interactionWithTask, setInteractionWithTask] = useState(false);
 
   console.log(meetingType);
   function saveOrCreateMeeting(value) {
@@ -58,6 +59,28 @@ function CreateMeeting() {
       key: uuidv4(),
     });
     return meetingList;
+  }
+
+  function workingWithTask(){
+
+    if (!interactionWithTask){
+      return(
+        <div className="create-meeting-button">
+<button
+      onClick={(e) => saveOrCreateMeeting(e.target.value)}
+      value={newMeeting ? 'Save meeting' : 'Create meeting'}
+    >
+      {newMeeting ? 'Save meeting' : 'Create meeting'}
+    </button> 
+    {newMeeting && <button>Delete meeting</button>}
+    </div>)
+    } else {
+      return(
+        <div className="create-meeting-button">
+        <button>The meeting took place</button>
+        </div>
+      )
+    }
   }
 
   return (
@@ -107,16 +130,8 @@ function CreateMeeting() {
           placeholder="Add description"
         ></input>
       </div>
-      <div className="create-meeting-button">
-        <button
-          onClick={(e) => saveOrCreateMeeting(e.target.value)}
-          value={newMeeting ? 'Save meeting' : 'Create meeting'}
-        >
-          {newMeeting ? 'Save meeting' : 'Create meeting'}
-        </button>
-
-        {newMeeting && <button>Delete meeting</button>}
-      </div>
+      {workingWithTask()}
+      
     </div>
   );
 }
