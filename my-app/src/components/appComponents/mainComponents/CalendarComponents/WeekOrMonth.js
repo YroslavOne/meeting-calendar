@@ -9,8 +9,8 @@ function WeekOrMonth() {
   const [dateValue, setDateValue] = useState(newDate);
   return (
     <div>
-      {/* <Month /> */}
-      <Week />
+      <Month />
+      {/* <Week /> */}
     </div>
   );
 }

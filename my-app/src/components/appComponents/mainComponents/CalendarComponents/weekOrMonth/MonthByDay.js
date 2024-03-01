@@ -140,8 +140,6 @@ function MonthByDay(dateForCalculations) {
       let endNumberWeek;
 
       for (let j = 1; countDay <= maxDay; j++) {
-        console.log('maxDay');
-        console.log(countDay);
         for (let i = 0; i < 7; i++) {
           countDay++;
           if (countDay <= maxDay) {

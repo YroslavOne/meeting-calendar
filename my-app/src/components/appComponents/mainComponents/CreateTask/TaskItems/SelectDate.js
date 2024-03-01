@@ -22,7 +22,6 @@ function SelectDate(props) {
   let dayWeek = dayForWeek[startDate.getDay()].dayWeek
   let month = startDate.toLocaleString('en', { month: 'long' });
   let day = startDate.getDate()
-  console.log(dayWeek, month,  day)
   if (props.interactionWithTask) {
     return (<div className="data-no-edit">{dayWeek}, {month} {day}</div>)
   } else {

@@ -1,41 +1,42 @@
-import { useContext } from 'react';
-import { Context } from '../../../../Context';
-import MonthByDay from './MonthByDay';
-import './Week.css';
+import { useContext } from "react";
+import { Context } from "../../../../Context";
+import MonthByDay from "./MonthByDay";
+import "./Week.css";
+import TimeWhithColon from "../../CreateTask/TaskItems/TimeWhithСolon";
 
 function Week() {
-  const { meetings } = useContext(Context);
+  const { meetings, actionsForMeeting } = useContext(Context);
   let dateForCalculations = new Date();
   let tasks = [
     {
-      title: 'title',
-      meetingType: 'Project Meeting',
-      dayWeek: 'friday',
+      title: "title",
+      meetingType: "Project Meeting",
+      dayWeek: "friday",
       date: new Date(2024, 2, 13),
       startTime: 10,
       endTime: 12,
-      location: 'add location',
-      description: 'Add Description',
+      location: "add location",
+      description: "Add Description",
     },
     {
-      title: 'title',
-      meetingType: 'Project Meeting',
-      dayWeek: 'friday',
+      title: "title",
+      meetingType: "Project Meeting",
+      dayWeek: "friday",
       date: new Date(2024, 2, 13, 10, 45),
       startDate: new Date(2024, 2, 13, 10, 45),
       endDate: new Date(2024, 2, 13, 11, 45),
-      location: 'add location',
-      description: 'Add Description',
+      location: "add location",
+      description: "Add Description",
     },
     {
-      title: 'title',
-      meetingType: 'Project Meeting',
-      dayWeek: 'friday',
+      title: "title",
+      meetingType: "Project Meeting",
+      dayWeek: "friday",
       date: new Date(2024, 2, 13),
       startTime: 10,
       endTime: 12,
-      location: 'add location',
-      description: 'Add Description',
+      location: "add location",
+      description: "Add Description",
     },
   ];
 
@@ -62,18 +63,18 @@ function Week() {
   });
 
   const dayForWeek = [
-    { dayWeek: '' },
-    { dayWeek: 'mon' },
-    { dayWeek: 'tue' },
-    { dayWeek: 'wed' },
-    { dayWeek: 'thu' },
-    { dayWeek: 'fri' },
-    { dayWeek: 'sat' },
-    { dayWeek: 'sun' },
+    { dayWeek: "" },
+    { dayWeek: "mon" },
+    { dayWeek: "tue" },
+    { dayWeek: "wed" },
+    { dayWeek: "thu" },
+    { dayWeek: "fri" },
+    { dayWeek: "sat" },
+    { dayWeek: "sun" },
   ];
   let hoursPerDay = [];
   for (let i = 0; i < 2; i++) {
-    let dayOrEvening = i === 0 ? 'am' : 'pm';
+    let dayOrEvening = i === 0 ? "am" : "pm";
     for (let i = 1; i <= 12; i++) {
       hoursPerDay.push(i + dayOrEvening);
     }
@@ -95,33 +96,45 @@ function Week() {
       {weekByDay.map((day) =>
         day.day ? (
           <td className="hour-weer-cell">
-            <div>{checkingMeetingNow(hour, day.day)}</div>
+            {checkingMeetingNow(hour, day.day)}
           </td>
         ) : (
-          ''
+          ""
         )
       )}
     </tr>
   ));
 
   function checkingMeetingNow(hour, day) {
-    let result;
-    meetings.map((meeting) => {
-      const hourMeetingStart =
-        meeting.timeStart[0] < 12
-          ? meeting.timeStart[0] + 'am'
-          : meeting.timeStart[0] - 12 + 'pm';
-      console.log(hourMeetingStart);
+    return (
+      <div>
+        {" "}
+        {meetings.map((meeting) => {
+          const result = "";
+          const hourMeetingStart =
+            meeting.timeStart[0] < 12
+              ? meeting.timeStart[0] + "am"
+              : meeting.timeStart[0] - 12 + "pm";
 
-      if (meeting.Date[2] === day && hour === hourMeetingStart) {
-        result = 'hi';
-        console.log('yes');
-      } else {
-        result = '';
-        console.log('no');
-      }
-    });
-    return result;
+          if (meeting.Date[2] === day && hour === hourMeetingStart) {
+            const timeStart = meeting.timeStart[0] + ":" + meeting.timeStart[1];
+            const timeEnd = meeting.timeEnd[0] + ":" + meeting.timeEnd[1];
+
+            return (
+              <div onClick={() => actionsForMeeting(meeting.key)}>
+                <h4>{meeting.name}</h4>
+                <p>
+                  <TimeWhithColon value={timeStart} />
+                  &nbsp;-&nbsp;
+                  <TimeWhithColon value={timeEnd} />
+                </p>
+              </div>
+            );
+          }
+          return <div></div>;
+        })}
+      </div>
+    );
   }
 
   return (
