@@ -1,26 +1,25 @@
-import MonthByDay from "./MonthByDay";
+import MonthByDay from './MonthByDay';
 // import Week from "./Week";
-import "./Month.css";
-import { useContext } from "react";
-import { Context } from "../../../../Context";
-import { v4 as uuidv4 } from "uuid";
-
+import './Month.css';
+import { useContext } from 'react';
+import { Context } from '../../../../Context';
+import { v4 as uuidv4 } from 'uuid';
 
 function Month() {
-  const { meetings, actionsForMeeting } = useContext(Context);
+  const { meetings, actionsForMeeting, dateForDisplay } = useContext(Context);
   const dayForWeek = [
-    { dayWeek: "sun" },
-    { dayWeek: "mon" },
-    { dayWeek: "tue" },
-    { dayWeek: "wed" },
-    { dayWeek: "thu" },
-    { dayWeek: "fri" },
-    { dayWeek: "sat" },
+    { dayWeek: 'sun' },
+    { dayWeek: 'mon' },
+    { dayWeek: 'tue' },
+    { dayWeek: 'wed' },
+    { dayWeek: 'thu' },
+    { dayWeek: 'fri' },
+    { dayWeek: 'sat' },
   ];
 
   let month = [];
 
-  let dateForCalculations = new Date();
+  let dateForCalculations = dateForDisplay;
   let nowMonth = dateForCalculations.getMonth();
 
   let oneMonth = MonthByDay(dateForCalculations);
@@ -44,8 +43,10 @@ function Month() {
           if (meeting.Date[2] === day && month === meeting.Date[1]) {
             return (
               <div
-              key={index}
-                onClick={()=>{actionsForMeeting(meeting.key)}}
+                key={index}
+                onClick={() => {
+                  actionsForMeeting(meeting.key);
+                }}
                 className="meeting-in-day"
               >
                 {meeting.name}
@@ -59,9 +60,9 @@ function Month() {
 
   let sortThroughDay = createMonth().map((week) => (
     <tr>
-      {week.map((day, ) => (
+      {week.map((day) => (
         <td key={uuidv4()}>
-          <div className={day.thisMonth ? "" : "color"}>
+          <div className={day.thisMonth ? '' : 'color'}>
             {day.day} {checkingAppointmentsForDay(day.day, day.month)}
           </div>
         </td>
@@ -71,7 +72,7 @@ function Month() {
 
   let generationDayWeek = dayForWeek.map((objWeekByDay, index) => {
     return (
-      <th  key={index} className="day-for-week">
+      <th key={index} className="day-for-week">
         <div>{objWeekByDay.dayWeek}</div>
       </th>
     );

@@ -1,37 +1,95 @@
-import { Clock, GeoAlt, TextLeft } from "react-bootstrap-icons";
-import MeetingType from "./TaskItems/MeetingType";
-import SelectDate from "./TaskItems/SelectDate";
-import SelectTime from "./TaskItems/SelectTime";
-import { useContext, useState } from "react";
-import "./CreateMeeting.css";
-import { Context } from "../../../Context";
-import { v4 as uuidv4 } from "uuid";
-import EnterName from "./TaskItems/EnterName";
-import LocationAndDescription from "./TaskItems/LocationAndDescription";
+import { Clock, GeoAlt, TextLeft, X } from 'react-bootstrap-icons';
+import MeetingType from './TaskItems/MeetingType';
+import SelectDate from './TaskItems/SelectDate';
+import SelectTime from './TaskItems/SelectTime';
+import { useContext, useState } from 'react';
+import './CreateMeeting.css';
+import { Context } from '../../../Context';
+import { v4 as uuidv4 } from 'uuid';
+import EnterName from './TaskItems/EnterName';
+import LocationAndDescription from './TaskItems/LocationAndDescription';
 
 function CreateMeeting() {
-  const { meetings, setMeetings, changeRepository, setChangeRepository } =
-    useContext(Context);
+  const {
+    meetings,
+    setMeetings,
+    changeRepository,
+    setChangeRepository,
+    changeMeetingStart,
+    newMeeting,
+    setNewMeeting,
+    interactionWithTask,
+    setInteractionWithTask,
+    setCreateWindow,
+  } = useContext(Context);
   const [nameMeeting, setNameMeeting] = useState(changeRepository.name);
   const [meetingType, setMeetingType] = useState(changeRepository.typeMeeting);
-  const [selectedDate, setSelectedDate] = useState(new Date(changeRepository.Date[0],changeRepository.Date[1] ,changeRepository.Date[2] ));
+  const [selectedDate, setSelectedDate] = useState(
+    new Date(
+      changeRepository.Date[0],
+      changeRepository.Date[1],
+      changeRepository.Date[2]
+    )
+  );
   const [selectedTimeStart, setSelectedTimeStart] = useState(
-    changeRepository.timeStart[0] + ":" + changeRepository.timeStart[1]
+    changeRepository.timeStart[0] + ':' + changeRepository.timeStart[1]
   );
   const [selectedTimeEnd, setSelectedTimeEnd] = useState(
-    changeRepository.timeEnd[0] + ":" +  changeRepository.timeEnd[1]
+    changeRepository.timeEnd[0] + ':' + changeRepository.timeEnd[1]
   );
   const [addLocation, setAddLocation] = useState(changeRepository.location);
-  const [addDescription, setAddDescription] = useState(changeRepository.description);
-  const [editOrNewMeeting, setEditOrNewMeeting] = useState(false);
-  const [interactionWithTask, setInteractionWithTask] = useState(false);
+  const [addDescription, setAddDescription] = useState(
+    changeRepository.description
+  );
+
+  function clickClose() {
+    setInteractionWithTask(false);
+    setNewMeeting(true);
+    setCreateWindow(false);
+    setChangeRepository(changeMeetingStart);
+  }
 
   function saveOrCreateMeeting(value) {
-    if (value === "Create meeting") {
-      console.log("Create meeting");
+    if (value === 'Create meeting') {
       setMeetings(addMeeting());
-    } else {
+    } else if (value === 'Save meeting') {
+      let indexForEdit = searchItemMeeting();
+      meetings[indexForEdit].name = nameMeeting;
+      meetings[indexForEdit].typeMeeting = meetingType;
+      meetings[indexForEdit].Date = [
+        selectedDate.getFullYear(),
+        selectedDate.getMonth(),
+        selectedDate.getDate(),
+      ];
+      meetings[indexForEdit].timeStart = [
+        Number(selectedTimeStart[0] + selectedTimeStart[1]),
+        Number(selectedTimeStart[3] + selectedTimeStart[4]),
+      ];
+      meetings[indexForEdit].timeEnd = [
+        Number(selectedTimeEnd[0] + selectedTimeEnd[1]),
+        Number(selectedTimeEnd[3] + selectedTimeEnd[4]),
+      ];
+      meetings[indexForEdit].location = addLocation;
+      meetings[indexForEdit].description = addDescription;
     }
+    clickClose();
+  }
+  function Delete() {
+    let meetingList = [...meetings];
+    let indexForDelete = searchItemMeeting();
+    meetingList.splice(indexForDelete, 1);
+    setMeetings(meetingList);
+    clickClose();
+  }
+
+  function searchItemMeeting() {
+    let indexMeeting;
+    meetings.map((meeting, index) => {
+      if (meeting.key === changeRepository.key) {
+        indexMeeting = index;
+      }
+    });
+    return indexMeeting;
   }
 
   function addMeeting() {
@@ -65,11 +123,13 @@ function CreateMeeting() {
         <div className="create-meeting-button">
           <button
             onClick={(e) => saveOrCreateMeeting(e.target.value)}
-            value={editOrNewMeeting ? "Save meeting" : "Create meeting"}
+            value={newMeeting ? 'Create meeting' : 'Save meeting'}
           >
-            {editOrNewMeeting ? "Save meeting" : "Create meeting"}
+            {newMeeting ? 'Create meeting' : 'Save meeting'}
           </button>
-          {editOrNewMeeting && <button>Delete meeting</button>}
+          {!newMeeting && (
+            <button onClick={() => Delete()}>Delete meeting</button>
+          )}
         </div>
       );
     } else {
@@ -86,11 +146,14 @@ function CreateMeeting() {
 
   return (
     <div className="create-meeting">
-      <EnterName
-        nameMeeting={nameMeeting}
-        setNameMeeting={setNameMeeting}
-        interactionWithTask={interactionWithTask}
-      />
+      <div className="create-meeting-name-and-close">
+        <EnterName
+          nameMeeting={nameMeeting}
+          setNameMeeting={setNameMeeting}
+          interactionWithTask={interactionWithTask}
+        />
+        <X className="create-meeting-close" onClick={() => clickClose()} />
+      </div>
       <MeetingType
         meetingType={meetingType}
         setMeetingType={setMeetingType}
@@ -127,14 +190,14 @@ function CreateMeeting() {
         addDescription={addDescription}
         setAddDescription={setAddDescription}
         interactionWithTask={interactionWithTask}
-        placeholder={"Add location"}
+        placeholder={'Add location'}
       />
       <LocationAndDescription
         icon={<TextLeft className="icon-create-meeting" />}
         value={addDescription}
         setValue={setAddDescription}
         interactionWithTask={interactionWithTask}
-        placeholder={"Add description"}
+        placeholder={'Add description'}
       />
 
       {workingWithTask()}

@@ -1,0 +1,4 @@
+export const SCREEN = {
+  SCREEN_WEEK: 'SCREEN_WEEK',
+  SCREEN_MONTH: 'SCREEN_MONTH',
+};
