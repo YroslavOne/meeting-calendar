@@ -4,14 +4,17 @@ import Calendar from './mainComponents/Calendar';
 // import { useState } from 'react';
 import CreateMeeting from './mainComponents/CreateTask/CreateMeeting';
 import MeetingToday from './mainComponents/MeetingToday/MeetingToday';
+import './Main.css';
 
 function Main() {
   const { createWindow, setCreateWindow } = useContext(Context);
   return (
     <div>
-      <Calendar />
-      {createWindow && <CreateMeeting />}
-      <MeetingToday />
+      <div className="main-calendar-and-meetingtoday">
+        <Calendar />
+        {createWindow && <CreateMeeting />}
+        <MeetingToday />
+      </div>
       <div>
         <button
           onClick={() => {
