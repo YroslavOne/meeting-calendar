@@ -5,6 +5,7 @@ import Calendar from './mainComponents/Calendar';
 import CreateMeeting from './mainComponents/CreateTask/CreateMeeting';
 import MeetingToday from './mainComponents/MeetingToday/MeetingToday';
 import './Main.css';
+import { Plus } from 'react-bootstrap-icons';
 
 function Main() {
   const { createWindow, setCreateWindow } = useContext(Context);
@@ -17,11 +18,12 @@ function Main() {
       </div>
       <div>
         <button
+        
           onClick={() => {
             setCreateWindow(true);
           }}
         >
-          add
+          <Plus className='add-meeting'/>
         </button>
       </div>
     </div>

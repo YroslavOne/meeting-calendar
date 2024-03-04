@@ -2,6 +2,7 @@
     width: 25%;
     border-top: 1px solid #EBECF0;
     padding: 20px;
+    height: 100vh;
 }
 .meeting-today-title{
     font-size: 20px;
@@ -15,6 +16,7 @@
     text-align: left;
 }
 .meeting-today-card{
+    background: linear-gradient(to right, var(--line-color) 1.5%, transparent 1.5%);
     border: 1px solid #EBECF0;
     padding: 15px;
     border-radius: 5px;
@@ -58,4 +60,9 @@ display: flex;
     align-content: flex-start;
     align-items: flex-start;
 
+}
+.list-meeting-today{
+    height: 80%;
+    overflow-y: hidden;
+    overflow-x: hidden; /* Скрываем вертикальный scrollbar */
 }

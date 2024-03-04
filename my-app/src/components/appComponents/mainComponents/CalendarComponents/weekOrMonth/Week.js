@@ -1,48 +1,47 @@
-import { useContext } from 'react';
-import { Context } from '../../../../Context';
-import MonthByDay from './MonthByDay';
-import './Week.css';
-import TimeWhithColon from '../../CreateTask/TaskItems/TimeWhithСolon';
+import { useContext } from "react";
+import { Context } from "../../../../Context";
+import MonthByDay from "./MonthByDay";
+import "./Week.css";
+import TimeWhithColon from "../../CreateTask/TaskItems/TimeWhithСolon";
 
 function Week(props) {
   const { meetings, actionsForMeeting, dateForDisplay } = useContext(Context);
   let dateForCalculations = dateForDisplay;
   let tasks = [
     {
-      title: 'title',
-      meetingType: 'Project Meeting',
-      dayWeek: 'friday',
+      title: "title",
+      meetingType: "Project Meeting",
+      dayWeek: "friday",
       date: new Date(2024, 2, 13),
       startTime: 10,
       endTime: 12,
-      location: 'add location',
-      description: 'Add Description',
+      location: "add location",
+      description: "Add Description",
     },
     {
-      title: 'title',
-      meetingType: 'Project Meeting',
-      dayWeek: 'friday',
+      title: "title",
+      meetingType: "Project Meeting",
+      dayWeek: "friday",
       date: new Date(2024, 2, 13, 10, 45),
       startDate: new Date(2024, 2, 13, 10, 45),
       endDate: new Date(2024, 2, 13, 11, 45),
-      location: 'add location',
-      description: 'Add Description',
+      location: "add location",
+      description: "Add Description",
     },
     {
-      title: 'title',
-      meetingType: 'Project Meeting',
-      dayWeek: 'friday',
+      title: "title",
+      meetingType: "Project Meeting",
+      dayWeek: "friday",
       date: new Date(2024, 2, 13),
       startTime: 10,
       endTime: 12,
-      location: 'add location',
-      description: 'Add Description',
+      location: "add location",
+      description: "Add Description",
     },
   ];
 
   let oneMonth = MonthByDay(dateForCalculations);
   // console.log(dateForCalculations)
-  
 
   let numberWeek = oneMonth.filter(
     (filterOneMonth) =>
@@ -53,11 +52,10 @@ function Week(props) {
     (filterOneMonth) => filterOneMonth.week === numberWeek[0].week
   );
 
-const monthNow = dateForCalculations.toLocaleString("en", { month: "long" });
-const dayStartWeek = weekByDay[0].day
-const dayEndWeek = weekByDay[6].day
-props.setWeekForOutput(`${dayStartWeek} - ${dayEndWeek} ${monthNow}`)
-
+  const monthNow = dateForCalculations.toLocaleString("en", { month: "long" });
+  const dayStartWeek = weekByDay[0].day;
+  const dayEndWeek = weekByDay[6].day;
+  props.setWeekForOutput(`${dayStartWeek} - ${dayEndWeek} ${monthNow}`);
 
   weekByDay.unshift({
     year: 2023,
@@ -69,18 +67,18 @@ props.setWeekForOutput(`${dayStartWeek} - ${dayEndWeek} ${monthNow}`)
   });
 
   const dayForWeek = [
-    { dayWeek: '' },
-    { dayWeek: 'mon' },
-    { dayWeek: 'tue' },
-    { dayWeek: 'wed' },
-    { dayWeek: 'thu' },
-    { dayWeek: 'fri' },
-    { dayWeek: 'sat' },
-    { dayWeek: 'sun' },
+    { dayWeek: "" },
+    { dayWeek: "sun" },
+    { dayWeek: "mon" },
+    { dayWeek: "tue" },
+    { dayWeek: "wed" },
+    { dayWeek: "thu" },
+    { dayWeek: "fri" },
+    { dayWeek: "sat" },
   ];
   let hoursPerDay = [];
   for (let i = 0; i < 2; i++) {
-    let dayOrEvening = i === 0 ? 'am' : 'pm';
+    let dayOrEvening = i === 0 ? "am" : "pm";
     for (let i = 1; i <= 12; i++) {
       hoursPerDay.push(i + dayOrEvening);
     }
@@ -105,7 +103,7 @@ props.setWeekForOutput(`${dayStartWeek} - ${dayEndWeek} ${monthNow}`)
             {checkingMeetingNow(hour, day.day)}
           </td>
         ) : (
-          ''
+          ""
         )
       )}
     </tr>
@@ -114,17 +112,17 @@ props.setWeekForOutput(`${dayStartWeek} - ${dayEndWeek} ${monthNow}`)
   function checkingMeetingNow(hour, day) {
     return (
       <div>
-        {' '}
+        {" "}
         {meetings.map((meeting) => {
-          const result = '';
+          const result = "";
           const hourMeetingStart =
             meeting.timeStart[0] < 12
-              ? meeting.timeStart[0] + 'am'
-              : meeting.timeStart[0] - 12 + 'pm';
+              ? meeting.timeStart[0] + "am"
+              : meeting.timeStart[0] - 12 + "pm";
 
           if (meeting.Date[2] === day && hour === hourMeetingStart) {
-            const timeStart = meeting.timeStart[0] + ':' + meeting.timeStart[1];
-            const timeEnd = meeting.timeEnd[0] + ':' + meeting.timeEnd[1];
+            const timeStart = meeting.timeStart[0] + ":" + meeting.timeStart[1];
+            const timeEnd = meeting.timeEnd[0] + ":" + meeting.timeEnd[1];
 
             return (
               <div onClick={() => actionsForMeeting(meeting.key)}>
@@ -144,15 +142,13 @@ props.setWeekForOutput(`${dayStartWeek} - ${dayEndWeek} ${monthNow}`)
   }
 
   return (
-    <table width="100%" ALIGN="center" cellpadding="15px" cellspacing="0">
-      <thead>
+    <table width="100%" ALIGN="center" cellpadding="15px" cellspacing="0" overflow= "auto">
+      <thead position= "sticky" className="table-thead">
         <tr className="">{generationDayForWeek}</tr>
+      
+      
       </thead>
-
-      <tbody>
-        <tr></tr>
-      </tbody>
-      {generationHourForWeek}
+      <tbody className="week-table-body">{generationHourForWeek}</tbody>
     </table>
   );
 }

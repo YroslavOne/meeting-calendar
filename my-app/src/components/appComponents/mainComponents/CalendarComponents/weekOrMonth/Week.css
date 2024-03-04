@@ -40,3 +40,10 @@
 .day-for-week{
     width: 12.5%;
 }
+.week-table-body{
+    height: 300px;
+    overflow-y: auto;
+}
+.table-thead{
+    position: sticky;
+}

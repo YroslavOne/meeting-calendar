@@ -9,7 +9,6 @@ import "./WeekOrMonth.css";
 
 function WeekOrMonth(props) {
 const {setDateForScreenOutput, dateForDisplay} =useContext(Context)
-const [monthForOutput, setMonthForOutput ] = useState("september")
 const [WeekForOutput, setWeekForOutput ] = useState("september")
 const monthNow = dateForDisplay.toLocaleString("en", { month: "long" });
 
@@ -23,7 +22,7 @@ if(props.weekOrMonth === SCREEN.SCREEN_MONTH){
 
   return (
     <div className="week-or-month">
-      {props.weekOrMonth === SCREEN.SCREEN_MONTH && <Month  setMonthForOutput={setMonthForOutput}/>}
+      {props.weekOrMonth === SCREEN.SCREEN_MONTH && <Month  />}
       {props.weekOrMonth === SCREEN.SCREEN_WEEK && <Week setWeekForOutput={setWeekForOutput}/>}
     </div>
   );
