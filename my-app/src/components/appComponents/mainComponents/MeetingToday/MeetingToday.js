@@ -7,7 +7,7 @@ function MeetingToday() {
   const dateToday = new Date();
   const monthNow = dateToday.toLocaleString("en", { month: "long" });
   const dayNow = dateToday.getDate();
-  const { meetings, meetingItems } = useContext(Context);
+  const { meetings, meetingItems, actionsForMeeting } = useContext(Context);
 
   let meetingsToday = meetings.filter(
     (meeting) =>
@@ -52,7 +52,7 @@ function MeetingToday() {
       </p>
       <div className="list-meeting-today">
       {meetingsToday.map((meetingToday) => (
-        <div className="meeting-today-card"  style={{
+        <div className="meeting-today-card" onClick={()=>{actionsForMeeting(meetingToday.key)}}  style={{
           '--line-color': lineColor(meetingToday.typeMeeting.name)}}>
           <div className="meeting-today-card-titletime-and-meetingtype">
           <div className="meeting-today-card-title-and-time">
