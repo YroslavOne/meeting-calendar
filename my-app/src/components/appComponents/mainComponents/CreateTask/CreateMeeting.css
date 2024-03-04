@@ -3,6 +3,7 @@ input {
 }
 
 .create-meeting {
+	z-index: 100;
 	position: absolute;
 	right: 20%;
 	bottom: 10px;

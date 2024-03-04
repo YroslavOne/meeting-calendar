@@ -1,49 +1,127 @@
-.table-week{
-    width: 100%;
+.table-week {
+	width: 100%;
 }
-.hour{
-    /* display: flex;
+
+.hour {
+	/* display: flex;
     justify-content: space-between;
     align-items: center;
     align-content: center;
     flex-direction: row; */
 }
 
-.hour-week{
-    position: relative;
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center; */
-    /* padding: 10px; */
+.hour-week {
+	position: relative;
 }
-.hour-week-div{
-    top:50%;
-    /* bottom: 50; */
-    position: absolute;
-}
-.hour-weer-cell{
 
-    position: relative;
-    border-top: 1px solid rgba(0, 0, 0, 0.3);
-    border-right: 1px solid rgba(0, 0, 0, 0.3);
-    /* border-bottom: 1px solid rgba(0, 0, 0, 0.3); */
+.hour-week-div {
+	top: 15vh;
+	position: absolute;
 }
-.lunch{
-    position: absolute;
-    height: 100%;
-    width: calc(200% + 2px);
-    top: 0;
-    left: 0;
-    background-color: black;
+
+.hour-weer-cell {
+
+	position: relative;
+	border-top: 1px solid rgba(0, 0, 0, 0.3);
+	border-right: 1px solid rgba(0, 0, 0, 0.3);
 }
-.day-for-week{
-    width: 12.5%;
+
+.lunch {
+	position: absolute;
+	height: 100%;
+	width: calc(200% + 2px);
+	top: 0;
+	left: 0;
+	background-color: black;
 }
-.week-table-body{
-    height: 300px;
-    overflow-y: auto;
+
+.day-for-week {
+	width: 12.5%;
 }
-.table-thead{
-    position: sticky;
+
+.week-table-body {
+	height: 300px;
+	overflow-y: auto;
+}
+
+.table-thead {
+	position: sticky;
+	background-color: white;
+	z-index: 10;
+}
+
+.container {
+	height: 90vh;
+	width: 100%;
+	margin: auto;
+	overflow: auto;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+thead th {
+	position: sticky;
+	top: 0;
+	background: white;
+}
+
+.container::-webkit-scrollbar {
+	width: 0px;
+}
+
+.day-for-weekday {
+	text-transform: uppercase;
+	color: #8C8B90;
+}
+
+.day-for-weekdate {
+	font-size: 20px;
+	color: #8C8B90;
+}
+
+.true-today {
+	color: #7550F6;
+}
+
+.empty-slot {
+	width: 100%;
+	height: 100%;
+}
+
+.hour-and-day-meeting {
+	z-index: 9;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: var(--color_for_background);
+	border-radius: 5px;
+}
+
+.hour-and-day {
+	top: 0px;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.hour-and-day-meeting-title {
+	margin: 0;
+	padding: 0;
+	color: white;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.hour-and-day-meeting-time {
+	display: flex;
+	color: white;
+	font-size: 14px;
+	font-weight: 100;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
 }
