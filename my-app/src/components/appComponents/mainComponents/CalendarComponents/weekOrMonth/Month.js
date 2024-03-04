@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { Context } from '../../../../Context';
 import { v4 as uuidv4 } from 'uuid';
 
-function Month() {
+function Month(props) {
   const { meetings, actionsForMeeting, dateForDisplay } = useContext(Context);
   const dayForWeek = [
     { dayWeek: 'sun' },

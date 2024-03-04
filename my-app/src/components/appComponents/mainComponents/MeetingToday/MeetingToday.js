@@ -1,10 +1,11 @@
-import { useContext } from 'react';
-import { Context } from '../../../Context';
-import TimeWhithColon from '../CreateTask/TaskItems/TimeWhithСolon';
+import { useContext } from "react";
+import { Context } from "../../../Context";
+import TimeWhithColon from "../CreateTask/TaskItems/TimeWhithСolon";
+import "./MeetingToday.css";
 
 function MeetingToday() {
   const dateToday = new Date();
-  const monthNow = dateToday.toLocaleString('en', { month: 'long' });
+  const monthNow = dateToday.toLocaleString("en", { month: "long" });
   const dayNow = dateToday.getDate();
   const { meetings, meetingItems } = useContext(Context);
 
@@ -21,9 +22,10 @@ function MeetingToday() {
     );
     return (
       <div
+      className="meeting-today-card-icon"
         style={{
-          color: 'rgba(' + filterTypeMeeting[0].color + ')',
-          background: 'rgba(' + filterTypeMeeting[0].background + ')',
+          color: "rgba(" + filterTypeMeeting[0].color + ")",
+          background: "rgba(" + filterTypeMeeting[0].background + ")",
         }}
       >
         {filterTypeMeeting[0].icon}
@@ -31,28 +33,32 @@ function MeetingToday() {
     );
   }
   return (
-    <div>
-      <h3>Meetings</h3>
-      {/* <button>view all</button>s */}
-      <p>
+    <div className="meeting-today">
+      <h3 className="meeting-today-title">Meetings</h3>
+      <p className="meeting-today-date">
         today, {monthNow} {dayNow}
       </p>
       {meetingsToday.map((meetingToday) => (
-        <div>
-          {meetingToday.name}
-          <div>
-            <TimeWhithColon
-              value={
-                meetingToday.timeStart[0] + ':' + meetingToday.timeStart[1]
-              }
-            />
-            &nbsp;-&nbsp;
-            <TimeWhithColon
-              value={meetingToday.timeEnd[0] + ':' + meetingToday.timeEnd[1]}
-            />
-            <div>{meetingTypeIcon(meetingToday.typeMeeting.name)}</div>
+        <div className="meeting-today-card">
+          <div className="meeting-today-card-titletime-and-meetingtype">
+          <div className="meeting-today-card-title-and-time">
+          <h4 className="meeting-today-card-title">{meetingToday.name}</h4>
+          
+            <div className="meeting-today-card-time">
+              <TimeWhithColon
+                value={
+                  meetingToday.timeStart[0] + ":" + meetingToday.timeStart[1]
+                }
+              />
+              &nbsp;-&nbsp;
+              <TimeWhithColon
+                value={meetingToday.timeEnd[0] + ":" + meetingToday.timeEnd[1]}
+              />
+              </div>
+            </div>
+              {meetingTypeIcon(meetingToday.typeMeeting.name)}
           </div>
-        </div>
+          </div>
       ))}
     </div>
   );

@@ -1,0 +1,61 @@
+.meeting-today{
+    width: 25%;
+    border-top: 1px solid #EBECF0;
+    padding: 20px;
+}
+.meeting-today-title{
+    font-size: 20px;
+    text-align: left;
+}
+
+.meeting-today-date{
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+    text-align: left;
+}
+.meeting-today-card{
+    border: 1px solid #EBECF0;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 5px 0   ;
+}
+.meeting-today-card-title{
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: left;
+
+
+}
+
+.meeting-today-card-time{
+    color: #7B7A80;
+    display: flex;
+    
+
+}
+.meeting-today-card-icon{
+    border-radius: 50%;
+    width: max-content;
+aspect-ratio: 1/1;
+font-size: 20px;
+border-radius: 50%;
+margin: 0;
+padding: 10px;
+display: flex;
+    
+}
+.meeting-today-card-titletime-and-meetingtype{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.meeting-today-card-title-and-time{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start;
+
+}

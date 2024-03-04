@@ -8,7 +8,7 @@ function TimeWhithColon(props) {
   return (
     <div className="style-no-edit-timer">
       {twelveHour}
-      <span>&nbsp;:&nbsp;</span>
+      <span>:</span>
       {minut} {prepand}
     </div>
   );

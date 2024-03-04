@@ -12,8 +12,8 @@ function Main() {
     <div>
       <div className="main-calendar-and-meetingtoday">
         <Calendar />
-        {createWindow && <CreateMeeting />}
         <MeetingToday />
+        {createWindow && <CreateMeeting />}
       </div>
       <div>
         <button

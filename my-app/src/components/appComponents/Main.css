@@ -1,4 +1,5 @@
 .main-calendar-and-meetingtoday {
 	display: flex;
+	justify-content: space-between;
 	width: 100%;
 }

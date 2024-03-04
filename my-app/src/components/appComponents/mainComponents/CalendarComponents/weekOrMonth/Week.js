@@ -4,7 +4,7 @@ import MonthByDay from './MonthByDay';
 import './Week.css';
 import TimeWhithColon from '../../CreateTask/TaskItems/TimeWhithСolon';
 
-function Week() {
+function Week(props) {
   const { meetings, actionsForMeeting, dateForDisplay } = useContext(Context);
   let dateForCalculations = dateForDisplay;
   let tasks = [
@@ -41,6 +41,8 @@ function Week() {
   ];
 
   let oneMonth = MonthByDay(dateForCalculations);
+  // console.log(dateForCalculations)
+  
 
   let numberWeek = oneMonth.filter(
     (filterOneMonth) =>
@@ -50,6 +52,12 @@ function Week() {
   let weekByDay = oneMonth.filter(
     (filterOneMonth) => filterOneMonth.week === numberWeek[0].week
   );
+
+const monthNow = dateForCalculations.toLocaleString("en", { month: "long" });
+const dayStartWeek = weekByDay[0].day
+const dayEndWeek = weekByDay[6].day
+props.setWeekForOutput(`${dayStartWeek} - ${dayEndWeek} ${monthNow}`)
+
 
   weekByDay.unshift({
     year: 2023,
