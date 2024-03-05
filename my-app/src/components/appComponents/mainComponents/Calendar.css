@@ -1,6 +1,8 @@
 .calendar{
     width: 70%;
-    padding-right: 10px;
+    /* padding-right: 10px; */
+    border-top: 1px solid #7B7A80;
+    border-right: 1px solid #7B7A80;
 }
 .meeting-today-and-week-or-month{
     display: flex;

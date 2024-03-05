@@ -1,20 +1,20 @@
-import MonthByDay from './MonthByDay';
+import MonthByDay from "./MonthByDay";
 // import Week from "./Week";
-import './Month.css';
-import { useContext } from 'react';
-import { Context } from '../../../../Context';
-import { v4 as uuidv4 } from 'uuid';
+import "./Month.css";
+import { useContext } from "react";
+import { Context } from "../../../../Context";
+import { v4 as uuidv4 } from "uuid";
 
 function Month(props) {
   const { meetings, actionsForMeeting, dateForDisplay } = useContext(Context);
   const dayForWeek = [
-    { dayWeek: 'sun' },
-    { dayWeek: 'mon' },
-    { dayWeek: 'tue' },
-    { dayWeek: 'wed' },
-    { dayWeek: 'thu' },
-    { dayWeek: 'fri' },
-    { dayWeek: 'sat' },
+    { dayWeek: "sun" },
+    { dayWeek: "mon" },
+    { dayWeek: "tue" },
+    { dayWeek: "wed" },
+    { dayWeek: "thu" },
+    { dayWeek: "fri" },
+    { dayWeek: "sat" },
   ];
 
   let month = [];
@@ -38,12 +38,13 @@ function Month(props) {
 
   function checkingAppointmentsForDay(day, month) {
     return (
-      <div>
+      <div className="meeting-in-day-margin">
         {meetings.map((meeting, index) => {
           if (meeting.Date[2] === day && month === meeting.Date[1]) {
             return (
               <div
                 key={index}
+                style={{ background: `rgba(${meeting.typeMeeting.color})` }}
                 onClick={() => {
                   actionsForMeeting(meeting.key);
                 }}
@@ -61,9 +62,10 @@ function Month(props) {
   let sortThroughDay = createMonth().map((week) => (
     <tr>
       {week.map((day) => (
-        <td key={uuidv4()}>
-          <div className={day.thisMonth ? '' : 'color'}>
-            {day.day} {checkingAppointmentsForDay(day.day, day.month)}
+        <td className="this-day-for-month" key={uuidv4()}>
+          <div className={day.thisMonth ? "this-day-for-month-div" : "this-day-for-month-div color"}>
+            <p >{day.day}</p>
+            <div>{checkingAppointmentsForDay(day.day, day.month)} </div>
           </div>
         </td>
       ))}
@@ -73,7 +75,7 @@ function Month(props) {
   let generationDayWeek = dayForWeek.map((objWeekByDay, index) => {
     return (
       <th key={index} className="day-for-week">
-        <div>{objWeekByDay.dayWeek}</div>
+        <div style={{ color: "#8C8B90" }}>{objWeekByDay.dayWeek}</div>
       </th>
     );
   });

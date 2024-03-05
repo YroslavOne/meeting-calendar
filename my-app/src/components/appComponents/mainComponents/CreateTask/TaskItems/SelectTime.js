@@ -7,6 +7,8 @@ import TimeWhithColon from './TimeWhithСolon';
 
 function SelectTime(props) {
   const [value, onChange] = useState(props.selectedTime);
+  console.log(value)
+
   props.setSelectedTime(value);
   // const hour =  value[1] === ":" ? '0' + value[0] : value[0] + value[1];
   // const twelveHour = hour > 12 ? hour - 12 : hour;

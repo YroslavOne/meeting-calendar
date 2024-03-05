@@ -3,6 +3,7 @@ import { Context } from '../../../../Context';
 import MonthByDay from './MonthByDay';
 import './Week.css';
 import TimeWhithColon from '../../CreateTask/TaskItems/TimeWhithСolon';
+import MeetingItem from './weekItems/MeetingItem';
 
 function Week(props) {
   const { meetings, actionsForMeeting, dateForDisplay, setCreateWindow } =
@@ -77,14 +78,13 @@ function Week(props) {
     { dayWeek: 'fri' },
     { dayWeek: 'sat' },
   ];
-  let hoursPerDay = [];
-  for (let i = 0; i < 2; i++) {
-    let dayOrEvening = i === 0 ? 'am' : 'pm';
-    for (let i = 1; i <= 12; i++) {
-      hoursPerDay.push(i + dayOrEvening);
-    }
-  }
-  console.log(weekByDay);
+  let hoursPerDay = ["0pm", "1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "12am", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm",];
+  // for (let i = 0; i < 2; i++) {
+  //   let dayOrEvening = i === 0 ? 'am' : 'pm';
+  //   for (let i = 1; i <= 12; i++) {
+  //     hoursPerDay.push(i + dayOrEvening);
+  //   }
+  // }
 
   let generationDayForWeek = weekByDay.map((objWeekByDay, index) => {
     return (
@@ -113,7 +113,7 @@ function Week(props) {
   let generationHourForWeek = hoursPerDay.map((hour) => (
     <tr>
       <td className="hour-week">
-        <div className="hour-week-div">{hour}</div>
+        <div className="hour-week-div">{hour==="0pm"?"":hour}</div>
       </td>
       {weekByDay.map((day) =>
         day.day ? (
@@ -130,8 +130,9 @@ function Week(props) {
   function checkingMeetingNow(hour, day) {
     return (
       <div className="hour-and-day">
-        {' '}
-        {meetings.map((meeting) => {
+        <MeetingItem setCreateWindow={setCreateWindow} hour = {hour} day={day} meetings={meetings}/>
+        
+        {/* {meetings.map((meeting) => {
           const result = '';
           const hourMeetingStart =
             meeting.timeStart[0] < 12
@@ -166,7 +167,7 @@ function Week(props) {
               ></div>
             );
           }
-        })}
+        })} */}
       </div>
     );
   }

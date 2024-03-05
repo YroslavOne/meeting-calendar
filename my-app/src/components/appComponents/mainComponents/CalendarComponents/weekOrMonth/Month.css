@@ -1,3 +1,32 @@
 .color{
     color: gray;
 }
+.meeting-in-day{
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+}
+.meeting-in-day{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.meeting-in-day-margin{
+    padding: 20px;
+}
+.day-for-week > div{
+    
+    text-transform: uppercase;
+}
+.this-day-for-month >div >p{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+.this-day-for-month-div{
+    position: relative;
+}
