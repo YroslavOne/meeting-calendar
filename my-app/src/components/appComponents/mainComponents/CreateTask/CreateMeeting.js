@@ -1,13 +1,13 @@
-import { Clock, GeoAlt, TextLeft, X } from 'react-bootstrap-icons';
-import MeetingType from './TaskItems/MeetingType';
-import SelectDate from './TaskItems/SelectDate';
-import SelectTime from './TaskItems/SelectTime';
-import { useContext, useState } from 'react';
-import './CreateMeeting.css';
-import { Context } from '../../../Context';
-import { v4 as uuidv4 } from 'uuid';
-import EnterName from './TaskItems/EnterName';
-import LocationAndDescription from './TaskItems/LocationAndDescription';
+import { Clock, GeoAlt, TextLeft, X } from "react-bootstrap-icons";
+import MeetingType from "./TaskItems/MeetingType";
+import SelectDate from "./TaskItems/SelectDate";
+import SelectTime from "./TaskItems/SelectTime";
+import { useContext, useState } from "react";
+import "./CreateMeeting.css";
+import { Context } from "../../../Context";
+import { v4 as uuidv4 } from "uuid";
+import EnterName from "./TaskItems/EnterName";
+import LocationAndDescription from "./TaskItems/LocationAndDescription";
 
 function CreateMeeting() {
   const {
@@ -31,12 +31,33 @@ function CreateMeeting() {
       changeRepository.Date[2]
     )
   );
-  
+  let hoursTwoValueStart = Number(
+    String(changeRepository.timeStart[0]).length === 2
+      ? changeRepository.timeStart[0]
+      : "0" + changeRepository.timeStart[0]
+  );
+  let minutsTwoValueStart = Number(
+    String(changeRepository.timeStart[1]).length === 2
+      ? changeRepository.timeStart[1]
+      : "0" + changeRepository.timeStart[1]
+  );
+
+  let hoursTwoValueEnd = Number(
+    String(changeRepository.timeEnd[0]).length === 2
+      ? changeRepository.timeEnd[0]
+      : "0" + changeRepository.timeEnd[0]
+  );
+  let minutsTwoValueEnd = Number(
+    String(changeRepository.timeEnd[1]).length === 2
+      ? changeRepository.timeEnd[1]
+      : "0" + changeRepository.timeEnd[1]
+  );
+
   const [selectedTimeStart, setSelectedTimeStart] = useState(
-    changeRepository.timeStart[0] + ':' + changeRepository.timeStart[1]
+    hoursTwoValueStart + ":" + minutsTwoValueStart
   );
   const [selectedTimeEnd, setSelectedTimeEnd] = useState(
-    changeRepository.timeEnd[0] + ':' + changeRepository.timeEnd[1]
+    hoursTwoValueEnd + ":" + minutsTwoValueEnd
   );
   const [addLocation, setAddLocation] = useState(changeRepository.location);
   const [addDescription, setAddDescription] = useState(
@@ -51,9 +72,9 @@ function CreateMeeting() {
   }
 
   function saveOrCreateMeeting(value) {
-    if (value === 'Create meeting') {
+    if (value === "Create meeting") {
       setMeetings(addMeeting());
-    } else if (value === 'Save meeting') {
+    } else if (value === "Save meeting") {
       let indexForEdit = searchItemMeeting();
       meetings[indexForEdit].name = nameMeeting;
       meetings[indexForEdit].typeMeeting = meetingType;
@@ -75,11 +96,17 @@ function CreateMeeting() {
     }
     clickClose();
   }
-  function Delete() {
+  function deleteMeeting() {
     let meetingList = [...meetings];
     let indexForDelete = searchItemMeeting();
     meetingList.splice(indexForDelete, 1);
     setMeetings(meetingList);
+    clickClose();
+  }
+  function complete() {
+    let meetingList = [...meetings];
+    let indexForDelete = searchItemMeeting();
+    meetingList[indexForDelete].completed = true;
     clickClose();
   }
 
@@ -124,19 +151,19 @@ function CreateMeeting() {
         <div className="create-meeting-button">
           <button
             onClick={(e) => saveOrCreateMeeting(e.target.value)}
-            value={newMeeting ? 'Create meeting' : 'Save meeting'}
+            value={newMeeting ? "Create meeting" : "Save meeting"}
           >
-            {newMeeting ? 'Create meeting' : 'Save meeting'}
+            {newMeeting ? "Create meeting" : "Save meeting"}
           </button>
           {!newMeeting && (
-            <button onClick={() => Delete()}>Delete meeting</button>
+            <button onClick={() => deleteMeeting()}>Delete meeting</button>
           )}
         </div>
       );
     } else {
       return (
         <div className="create-meeting-button">
-          <button>Complete</button>
+          <button onClick={() => complete()}>Complete</button>
           <button onClick={() => setInteractionWithTask(!interactionWithTask)}>
             Edit
           </button>
@@ -191,14 +218,14 @@ function CreateMeeting() {
         addDescription={addDescription}
         setAddDescription={setAddDescription}
         interactionWithTask={interactionWithTask}
-        placeholder={'Add location'}
+        placeholder={"Add location"}
       />
       <LocationAndDescription
         icon={<TextLeft className="icon-create-meeting" />}
         value={addDescription}
         setValue={setAddDescription}
         interactionWithTask={interactionWithTask}
-        placeholder={'Add description'}
+        placeholder={"Add description"}
       />
 
       {workingWithTask()}

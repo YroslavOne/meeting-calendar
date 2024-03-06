@@ -1,5 +1,4 @@
-import { GeoAlt } from 'react-bootstrap-icons';
-import './LocationAndDescription.css';
+import "./LocationAndDescription.css";
 
 function LocationAndDescription(props) {
   if (props.interactionWithTask) {

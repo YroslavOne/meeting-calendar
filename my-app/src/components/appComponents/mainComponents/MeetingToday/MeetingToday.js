@@ -16,17 +16,15 @@ function MeetingToday() {
       meeting.Date[2] === dateToday.getDate()
   );
 
-
   function meetingTypeIcon(nameMeeting) {
     const filterTypeMeeting = meetingItems.filter(
-      
       (meetingItem) => meetingItem.name === nameMeeting
     );
     return (
       <div
-      className="meeting-today-card-icon"
+        className="meeting-today-card-icon"
         style={{
-          '--line-color': "rgba(" + filterTypeMeeting[0].color + ")",
+          "--line-color": "rgba(" + filterTypeMeeting[0].color + ")",
           color: "rgba(" + filterTypeMeeting[0].color + ")",
           background: "rgba(" + filterTypeMeeting[0].background + ")",
         }}
@@ -38,11 +36,9 @@ function MeetingToday() {
 
   function lineColor(nameMeeting) {
     const filterTypeMeeting = meetingItems.filter(
-      
       (meetingItem) => meetingItem.name === nameMeeting
     );
-    return ("rgba(" + filterTypeMeeting[0].color + ")")
-   
+    return "rgba(" + filterTypeMeeting[0].color + ")";
   }
   return (
     <div className="meeting-today">
@@ -51,29 +47,44 @@ function MeetingToday() {
         today, {monthNow} {dayNow}
       </p>
       <div className="list-meeting-today">
-      {meetingsToday.map((meetingToday) => (
-        <div className="meeting-today-card" onClick={()=>{actionsForMeeting(meetingToday.key)}}  style={{
-          '--line-color': lineColor(meetingToday.typeMeeting.name)}}>
-          <div className="meeting-today-card-titletime-and-meetingtype">
-          <div className="meeting-today-card-title-and-time">
-          <h4 className="meeting-today-card-title">{meetingToday.name}</h4>
-          
-            <div className="meeting-today-card-time">
-              <TimeWhithColon
-                value={
-                  meetingToday.timeStart[0] + ":" + meetingToday.timeStart[1]
-                }
-              />
-              &nbsp;-&nbsp;
-              <TimeWhithColon
-                value={meetingToday.timeEnd[0] + ":" + meetingToday.timeEnd[1]}
-              />
+        {meetingsToday.map((meetingToday) => (
+          <div
+            className="meeting-today-card"
+            onClick={() => {
+              actionsForMeeting(meetingToday.key);
+            }}
+            style={{
+              "--line-color": !meetingToday.completed
+                ? lineColor(meetingToday.typeMeeting.name)
+                : "#8C8B90",
+            }}
+          >
+            <div className="meeting-today-card-titletime-and-meetingtype">
+              <div className="meeting-today-card-title-and-time">
+                <h4 className="meeting-today-card-title">
+                  {meetingToday.name}
+                </h4>
+
+                <div className="meeting-today-card-time">
+                  <TimeWhithColon
+                    value={
+                      meetingToday.timeStart[0] +
+                      ":" +
+                      meetingToday.timeStart[1]
+                    }
+                  />
+                  &nbsp;-&nbsp;
+                  <TimeWhithColon
+                    value={
+                      meetingToday.timeEnd[0] + ":" + meetingToday.timeEnd[1]
+                    }
+                  />
+                </div>
               </div>
-            </div>
               {meetingTypeIcon(meetingToday.typeMeeting.name)}
+            </div>
           </div>
-          </div>
-      ))}
+        ))}
       </div>
     </div>
   );

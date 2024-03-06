@@ -1,14 +1,13 @@
-import React, {useState, useContext} from 'react';
-import './App.css';
-import Main from './appComponents/Main.js';
-import { ContextProvider } from './Context.js';
+import "./App.css";
+import Main from "./appComponents/Main.js";
+import { ContextProvider } from "./Context.js";
 
 function App() {
   return (
     <ContextProvider>
-    <div className="App">
-      <Main/>
-    </div>
+      <div className="App">
+        <Main />
+      </div>
     </ContextProvider>
   );
 }

@@ -1,10 +1,9 @@
-import { useState, useContext } from 'react';
-import WeekOrMonth from './CalendarComponents/WeekOrMonth';
-import './Calendar.css';
-import MeetingToday from './MeetingToday/MeetingToday';
-import { Context } from '../../Context';
-import { SCREEN } from '../../Consist';
-import { ChevronLeft, ChevronRight } from 'react-bootstrap-icons';
+import { useState, useContext } from "react";
+import WeekOrMonth from "./CalendarComponents/WeekOrMonth";
+import "./Calendar.css";
+import { Context } from "../../Context";
+import { SCREEN } from "../../Consist";
+import { ChevronLeft, ChevronRight } from "react-bootstrap-icons";
 
 function Calendar() {
   const { dateForDisplay, setDateForDisplay, dateForScreenOutput } =
@@ -17,13 +16,13 @@ function Calendar() {
     let date = dateForDisplay;
     if (weekOrMonthInCalendar === SCREEN.SCREEN_MONTH) {
       let updateDate =
-        leftOrRight === 'left'
+        leftOrRight === "left"
           ? new Date(date.getFullYear(), date.getMonth() - 1, date.getDate())
           : new Date(date.getFullYear(), date.getMonth() + 1, date.getDate());
       setDateForDisplay(updateDate);
     } else if (weekOrMonthInCalendar === SCREEN.SCREEN_WEEK) {
       let updateDate =
-        leftOrRight === 'left'
+        leftOrRight === "left"
           ? new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7)
           : new Date(date.getFullYear(), date.getMonth(), date.getDate() + 7);
       setDateForDisplay(updateDate);
@@ -37,14 +36,14 @@ function Calendar() {
           <div className="calendar-button-left-rigth">
             <button
               onClick={(e) => {
-                flipThroughTheCalendar('left');
+                flipThroughTheCalendar("left");
               }}
             >
               <ChevronLeft />
             </button>
             <button
               onClick={(e) => {
-                flipThroughTheCalendar('right');
+                flipThroughTheCalendar("right");
               }}
             >
               <ChevronRight />

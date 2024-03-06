@@ -1,11 +1,10 @@
 import MonthByDay from "./MonthByDay";
-// import Week from "./Week";
 import "./Month.css";
 import { useContext } from "react";
 import { Context } from "../../../../Context";
 import { v4 as uuidv4 } from "uuid";
 
-function Month(props) {
+function Month() {
   const { meetings, actionsForMeeting, dateForDisplay } = useContext(Context);
   const dayForWeek = [
     { dayWeek: "sun" },
@@ -44,7 +43,11 @@ function Month(props) {
             return (
               <div
                 key={index}
-                style={{ background: `rgba(${meeting.typeMeeting.color})` }}
+                style={{
+                  background: !meeting.completed
+                    ? `rgba(${meeting.typeMeeting.color})`
+                    : "#8C8B90",
+                }}
                 onClick={() => {
                   actionsForMeeting(meeting.key);
                 }}
@@ -63,8 +66,14 @@ function Month(props) {
     <tr>
       {week.map((day) => (
         <td className="this-day-for-month" key={uuidv4()}>
-          <div className={day.thisMonth ? "this-day-for-month-div" : "this-day-for-month-div color"}>
-            <p >{day.day}</p>
+          <div
+            className={
+              day.thisMonth
+                ? "this-day-for-month-div"
+                : "this-day-for-month-div color"
+            }
+          >
+            <p>{day.day}</p>
             <div>{checkingAppointmentsForDay(day.day, day.month)} </div>
           </div>
         </td>
@@ -80,13 +89,15 @@ function Month(props) {
     );
   });
   return (
-    <table width="100%" ALIGN="center" cellpadding="15px" cellspacing="0">
-      <thead>
-        <tr className="">{generationDayWeek}</tr>
-      </thead>
+    <div className="container">
+      <table width="100%" ALIGN="center" cellpadding="15px" cellspacing="0">
+        <thead className="table-thead">
+          <tr className="">{generationDayWeek}</tr>
+        </thead>
 
-      <tbody>{sortThroughDay}</tbody>
-    </table>
+        <tbody className="week-table-body">{sortThroughDay}</tbody>
+      </table>
+    </div>
   );
 }
 export default Month;

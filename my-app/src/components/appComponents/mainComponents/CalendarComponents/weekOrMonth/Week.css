@@ -48,6 +48,7 @@
 }
 
 .table-thead {
+	padding-top: 10px;
 	position: sticky;
 	background-color: white;
 	z-index: 10;
