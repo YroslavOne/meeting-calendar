@@ -1,9 +1,9 @@
-import { useState, useContext } from "react";
-import WeekOrMonth from "./CalendarComponents/WeekOrMonth";
-import "./Calendar.css";
-import { Context } from "../../Context";
-import { SCREEN } from "../../Consist";
-import { ChevronLeft, ChevronRight } from "react-bootstrap-icons";
+import { useState, useContext } from 'react';
+import WeekOrMonth from './CalendarComponents/WeekOrMonth';
+import './Calendar.css';
+import { Context } from '../../Context';
+import { SCREEN } from '../../Consist';
+import { ChevronLeft, ChevronRight } from 'react-bootstrap-icons';
 
 function Calendar() {
   const { dateForDisplay, setDateForDisplay, dateForScreenOutput } =
@@ -13,20 +13,22 @@ function Calendar() {
   );
 
   function flipThroughTheCalendar(leftOrRight) {
-    let date = dateForDisplay;
+    let date = dateForDisplay; //описание каждой переменной
+    // что хранит, поностью суть, прочитав название должен понять что внутри
+    let updateDate;
     if (weekOrMonthInCalendar === SCREEN.SCREEN_MONTH) {
-      let updateDate =
-        leftOrRight === "left"
+      updateDate =
+        leftOrRight === 'left'
           ? new Date(date.getFullYear(), date.getMonth() - 1, date.getDate())
           : new Date(date.getFullYear(), date.getMonth() + 1, date.getDate());
-      setDateForDisplay(updateDate);
     } else if (weekOrMonthInCalendar === SCREEN.SCREEN_WEEK) {
-      let updateDate =
-        leftOrRight === "left"
+      updateDate =
+        leftOrRight === 'left'
           ? new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7)
           : new Date(date.getFullYear(), date.getMonth(), date.getDate() + 7);
-      setDateForDisplay(updateDate);
+      // setDateForDisplay(updateDate);
     }
+    setDateForDisplay(updateDate);
   }
 
   return (
@@ -36,14 +38,14 @@ function Calendar() {
           <div className="calendar-button-left-rigth">
             <button
               onClick={(e) => {
-                flipThroughTheCalendar("left");
+                flipThroughTheCalendar('left');
               }}
             >
               <ChevronLeft />
             </button>
             <button
               onClick={(e) => {
-                flipThroughTheCalendar("right");
+                flipThroughTheCalendar('right');
               }}
             >
               <ChevronRight />

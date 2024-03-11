@@ -1,12 +1,11 @@
-import { useContext } from "react";
-import { Context } from "../../../../Context";
-import MonthByDay from "./MonthByDay";
-import "./Week.css";
-import MeetingItem from "./weekItems/MeetingItem";
+import { useContext } from 'react';
+import { Context } from '../../../../Context';
+import MonthByDay from './MonthByDay';
+import './Week.css';
+import MeetingItem from './weekItems/MeetingItem';
 
 function Week(props) {
-  const { meetings, dateForDisplay, setCreateWindow } =
-    useContext(Context);
+  const { meetings, dateForDisplay, setCreateWindow } = useContext(Context);
   let dateForCalculations = dateForDisplay;
 
   let oneMonth = MonthByDay(dateForCalculations);
@@ -20,7 +19,7 @@ function Week(props) {
     (filterOneMonth) => filterOneMonth.week === numberWeek[0].week
   );
 
-  const monthNow = dateForCalculations.toLocaleString("en", { month: "long" });
+  const monthNow = dateForCalculations.toLocaleString('en', { month: 'long' });
   const dayStartWeek = weekByDay[0].day;
   const dayEndWeek = weekByDay[6].day;
   props.setWeekForOutput(`${dayStartWeek} - ${dayEndWeek} ${monthNow}`);
@@ -36,40 +35,40 @@ function Week(props) {
   });
 
   const dayForWeek = [
-    { dayWeek: "" },
-    { dayWeek: "sun" },
-    { dayWeek: "mon" },
-    { dayWeek: "tue" },
-    { dayWeek: "wed" },
-    { dayWeek: "thu" },
-    { dayWeek: "fri" },
-    { dayWeek: "sat" },
+    { dayWeek: '' },
+    { dayWeek: 'sun' },
+    { dayWeek: 'mon' },
+    { dayWeek: 'tue' },
+    { dayWeek: 'wed' },
+    { dayWeek: 'thu' },
+    { dayWeek: 'fri' },
+    { dayWeek: 'sat' },
   ];
   let hoursPerDay = [
-    "0pm",
-    "1am",
-    "2am",
-    "3am",
-    "4am",
-    "5am",
-    "6am",
-    "7am",
-    "8am",
-    "9am",
-    "10am",
-    "11am",
-    "12am",
-    "1pm",
-    "2pm",
-    "3pm",
-    "4pm",
-    "5pm",
-    "6pm",
-    "7pm",
-    "8pm",
-    "9pm",
-    "10pm",
-    "11pm",
+    '0pm',
+    '1am',
+    '2am',
+    '3am',
+    '4am',
+    '5am',
+    '6am',
+    '7am',
+    '8am',
+    '9am',
+    '10am',
+    '11am',
+    '12am',
+    '1pm',
+    '2pm',
+    '3pm',
+    '4pm',
+    '5pm',
+    '6pm',
+    '7pm',
+    '8pm',
+    '9pm',
+    '10pm',
+    '11pm',
   ];
 
   let generationDayForWeek = weekByDay.map((objWeekByDay, index) => {
@@ -78,8 +77,8 @@ function Week(props) {
         <div
           className={
             objWeekByDay.today
-              ? "day-for-weekday true-today"
-              : "day-for-weekday"
+              ? 'day-for-weekday true-today'
+              : 'day-for-weekday'
           }
         >
           {dayForWeek[index].dayWeek}
@@ -87,8 +86,8 @@ function Week(props) {
         <div
           className={
             objWeekByDay.today
-              ? "day-for-weekdate true-today"
-              : "day-for-weekdate"
+              ? 'day-for-weekdate true-today'
+              : 'day-for-weekdate'
           }
         >
           {objWeekByDay.day}
@@ -99,7 +98,7 @@ function Week(props) {
   let generationHourForWeek = hoursPerDay.map((hour) => (
     <tr>
       <td className="hour-week">
-        <div className="hour-week-div">{hour === "0pm" ? "" : hour}</div>
+        <div className="hour-week-div">{hour === '0pm' ? '' : hour}</div>
       </td>
       {weekByDay.map((day) =>
         day.day ? (
@@ -107,7 +106,7 @@ function Week(props) {
             {checkingMeetingNow(hour, day.day)}
           </td>
         ) : (
-          ""
+          ''
         )
       )}
     </tr>
