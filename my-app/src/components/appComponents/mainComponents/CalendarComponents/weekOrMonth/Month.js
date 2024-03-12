@@ -5,7 +5,7 @@ import { Context } from "../../../../Context";
 import { v4 as uuidv4 } from "uuid";
 
 function Month() {
-  const { meetings, actionsForMeeting, dateForDisplay } = useContext(Context);
+  const { meetingsAfterSearch, actionsForMeeting, dateForDisplay } = useContext(Context);
   const dayForWeek = [
     { dayWeek: "sun" },
     { dayWeek: "mon" },
@@ -38,7 +38,7 @@ function Month() {
   function checkingAppointmentsForDay(day, month) {
     return (
       <div className="meeting-in-day-margin">
-        {meetings.map((meeting, index) => {
+        {meetingsAfterSearch.map((meeting, index) => {
           if (meeting.Date[2] === day && month === meeting.Date[1]) {
             return (
               <div

@@ -7,9 +7,9 @@ function MeetingToday() {
   const dateToday = new Date();
   const monthNow = dateToday.toLocaleString("en", { month: "long" });
   const dayNow = dateToday.getDate();
-  const { meetings, meetingItems, actionsForMeeting } = useContext(Context);
+  const { meetingsAfterSearch, meetingItems, actionsForMeeting } = useContext(Context);
 
-  let meetingsToday = meetings.filter(
+  let meetingsToday = meetingsAfterSearch.filter(
     (meeting) =>
       meeting.Date[0] === dateToday.getFullYear() &&
       meeting.Date[1] === dateToday.getMonth() &&

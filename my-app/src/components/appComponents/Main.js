@@ -12,6 +12,7 @@ function Main() {
   // isNewEventWindowOpened,setIsNewEventWindowOpened изменить в контексте
   return (
     <div>
+      
       <div className="main-calendar-and-meetingtoday">
         <Calendar />
         <MeetingToday />
