@@ -13,7 +13,6 @@ function WeekOrMonth(props) {
 
   if (props.weekOrMonth === SCREEN.SCREEN_MONTH) {
     setDateForScreenOutput(monthNow);
-    console.log(dateForDisplay);
   } else {
     setDateForScreenOutput(WeekForOutput);
   }

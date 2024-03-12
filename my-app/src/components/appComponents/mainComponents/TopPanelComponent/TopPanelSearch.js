@@ -7,10 +7,10 @@ function TopPanelSearch() {
     useContext(Context);
   const [searchValue, setSearchValue] = useState("");
 
-  function search() {
-    if (searchValue != "") {
+  function search(valueSearch) {
+    if (valueSearch != "") {
       let temporaryMeetings = meetings.filter((obj) =>
-        obj.name.includes(searchValue)
+        obj.name.includes(valueSearch)
       );
       setMeetingsAfterSearch(temporaryMeetings);
     } else {
@@ -19,6 +19,7 @@ function TopPanelSearch() {
     }
   }
   console.log(meetingsAfterSearch);
+  console.log(searchValue);
 
   return (
     <div className="top-panel-div">
@@ -26,9 +27,10 @@ function TopPanelSearch() {
       <input
         type="text"
         value={searchValue}
+        // onClick={()=>search()}
         onChange={(e) => {
           setSearchValue(e.target.value);
-          search();
+          search(e.target.value);
         }}
         className="search-input"
         placeholder="Search"
