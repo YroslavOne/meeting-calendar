@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import WeekOrMonth from './CalendarComponents/WeekOrMonth';
 import './Calendar.css';
 import { Context } from '../../Context';
-import { SCREEN } from '../../Consist';
+import { SCREEN } from '../../Constants';
 import { ChevronLeft, ChevronRight } from 'react-bootstrap-icons';
 
 function Calendar() {

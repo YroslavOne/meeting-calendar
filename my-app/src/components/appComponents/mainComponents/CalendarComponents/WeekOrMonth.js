@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Month from './weekOrMonth/Month.js';
 import Week from './weekOrMonth/Week.js';
-import { SCREEN } from '../../../Consist.js';
+import { SCREEN } from '../../../Constants.js';
 import { Context } from '../../../Context.js';
 import './WeekOrMonth.css';
 

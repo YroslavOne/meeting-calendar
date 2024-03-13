@@ -15,7 +15,7 @@ function CreateMeeting() {
     setMeetings,
     changeRepository,
     setChangeRepository,
-    changeMeetingStart,
+    ChangeMeetingStart,
     newMeeting,
     setNewMeeting,
     interactionWithTask,
@@ -68,7 +68,7 @@ function CreateMeeting() {
     setInteractionWithTask(false);
     setNewMeeting(true);
     setCreateWindow(false);
-    setChangeRepository(changeMeetingStart);
+    setChangeRepository(ChangeMeetingStart);
   }
 
   function saveOrCreateMeeting(value) {

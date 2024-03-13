@@ -7,7 +7,7 @@ function MeetingToday() {
   const dateToday = new Date();
   const monthNow = dateToday.toLocaleString("en", { month: "long" });
   const dayNow = dateToday.getDate();
-  const { meetingsAfterSearch, meetingItems, actionsForMeeting } = useContext(Context);
+  const { meetingsAfterSearch, MeetingItems, actionsForMeeting } = useContext(Context);
 
   let meetingsToday = meetingsAfterSearch.filter(
     (meeting) =>
@@ -17,7 +17,7 @@ function MeetingToday() {
   );
 
   function meetingTypeIcon(nameMeeting) {
-    const filterTypeMeeting = meetingItems.filter(
+    const filterTypeMeeting = MeetingItems.filter(
       (meetingItem) => meetingItem.name === nameMeeting
     );
     return (
@@ -35,7 +35,7 @@ function MeetingToday() {
   }
 
   function lineColor(nameMeeting) {
-    const filterTypeMeeting = meetingItems.filter(
+    const filterTypeMeeting = MeetingItems.filter(
       (meetingItem) => meetingItem.name === nameMeeting
     );
     return "rgba(" + filterTypeMeeting[0].color + ")";

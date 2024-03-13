@@ -3,7 +3,7 @@ import { Context } from "../../../../Context";
 import "./MeetingType.css";
 
 function MeetingType(props) {
-  const { meetingItems } = useContext(Context);
+  const { MeetingItems } = useContext(Context);
 
   function updateMeetingType(allValuesTypeMeeting) {
     let temporaryStorageForType = {
@@ -18,7 +18,7 @@ function MeetingType(props) {
     <div className="meeting-type">
       <h5 className="meeting-type-title">Meeting type</h5>
       <ul className="meeting-type-items">
-        {meetingItems.map((nameMeeting) => (
+        {MeetingItems.map((nameMeeting) => (
           <li
             className="meeting-type-item"
             onClick={(e) => updateMeetingType(nameMeeting)}
