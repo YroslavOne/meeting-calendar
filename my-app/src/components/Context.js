@@ -31,7 +31,9 @@ export const ContextProvider = ({ children }) => {
     JSON.parse(localStorage.MeetingItem)
   );
   const [meetingsAfterSearch, setMeetingsAfterSearch] = useState(meetings);
-  const [changeRepository, setChangeRepository] = useState(ChangeMeetingStart());
+  const [changeRepository, setChangeRepository] = useState(
+    ChangeMeetingStart()
+  );
   const [createWindow, setCreateWindow] = useState(false);
   const [dateForDisplay, setDateForDisplay] = useState(new Date());
   const [newMeeting, setNewMeeting] = useState(true);
@@ -39,19 +41,20 @@ export const ContextProvider = ({ children }) => {
   const [dateForScreenOutput, setDateForScreenOutput] = useState("");
   const [searchValue, setSearchValue] = useState("");
 
-
   function actionsForMeeting(key) {
-    meetings.map((meeting) => {
-      if (meeting.key === key) {
-        setInteractionWithTask(true);
-        setChangeRepository(meeting);
-        setNewMeeting(false);
-        setCreateWindow(true);
-      } else {
-        setChangeRepository(ChangeMeetingStart());
-        setCreateWindow(true);
-      }
-    });
+    if (key === "none") {
+      setChangeRepository(ChangeMeetingStart());
+      setCreateWindow(true);
+    } else {
+      meetings.map((meeting) => {
+        if (meeting.key === key) {
+          setInteractionWithTask(true);
+          setChangeRepository(meeting);
+          setNewMeeting(false);
+          setCreateWindow(true);
+        }
+      });
+    }
   }
 
   useEffect(() => {
