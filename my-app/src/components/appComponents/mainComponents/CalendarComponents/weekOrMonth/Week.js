@@ -5,7 +5,7 @@ import './Week.css';
 import MeetingItem from './weekItems/MeetingItem';
 
 function Week(props) {
-  const { meetingsAfterSearch, dateForDisplay, setCreateWindow } = useContext(Context);
+  const { meetingsAfterSearch, dateForDisplay } = useContext(Context);
   let dateForCalculations = dateForDisplay;
 
   let oneMonth = MonthByDay(dateForCalculations);
@@ -116,7 +116,6 @@ function Week(props) {
     return (
       <div className="hour-and-day">
         <MeetingItem
-          setCreateWindow={setCreateWindow}
           hour={hour}
           day={day}
           meetings={meetingsAfterSearch}

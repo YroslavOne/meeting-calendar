@@ -31,13 +31,14 @@ export const ContextProvider = ({ children }) => {
     JSON.parse(localStorage.MeetingItem)
   );
   const [meetingsAfterSearch, setMeetingsAfterSearch] = useState(meetings);
-  const [changeRepository, setChangeRepository] = useState(ChangeMeetingStart);
+  const [changeRepository, setChangeRepository] = useState(ChangeMeetingStart());
   const [createWindow, setCreateWindow] = useState(false);
   const [dateForDisplay, setDateForDisplay] = useState(new Date());
   const [newMeeting, setNewMeeting] = useState(true);
   const [interactionWithTask, setInteractionWithTask] = useState(false);
   const [dateForScreenOutput, setDateForScreenOutput] = useState("");
   const [searchValue, setSearchValue] = useState("");
+
 
   function actionsForMeeting(key) {
     meetings.map((meeting) => {
@@ -47,9 +48,7 @@ export const ContextProvider = ({ children }) => {
         setNewMeeting(false);
         setCreateWindow(true);
       } else {
-        // setInteractionWithTask(true);
-        setChangeRepository(ChangeMeetingStart);
-        // setNewMeeting(true);
+        setChangeRepository(ChangeMeetingStart());
         setCreateWindow(true);
       }
     });
@@ -58,6 +57,18 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     localStorage.MeetingItem = JSON.stringify(meetings);
   }, [meetings]);
+
+  useEffect(() => {
+    if (searchValue != "") {
+      let temporaryMeetings = meetings.filter((obj) =>
+        obj.name.includes(searchValue)
+      );
+      setMeetingsAfterSearch(temporaryMeetings);
+    } else {
+      let temporaryMeetings = [...meetings];
+      setMeetingsAfterSearch(temporaryMeetings);
+    }
+  }, [searchValue, meetings]);
 
   return (
     <Context.Provider

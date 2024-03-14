@@ -50,7 +50,7 @@ function MeetingItem(props) {
         <div
           className="empty-slot"
           onClick={() => {
-            props.setCreateWindow(true);
+            actionsForMeeting("none");
           }}
         ></div>
       );

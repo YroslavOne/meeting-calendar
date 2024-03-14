@@ -7,7 +7,6 @@ import './WeekOrMonth.css';
 
 function WeekOrMonth(props) {
   const { setDateForScreenOutput, dateForDisplay } = useContext(Context);
-  // console.log()
   const [WeekForOutput, setWeekForOutput] = useState(''); // дни недели + месяц
   const monthNow = dateForDisplay.toLocaleString('en', { month: 'long' });
 

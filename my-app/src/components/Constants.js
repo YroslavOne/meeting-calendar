@@ -11,22 +11,29 @@ export const SCREEN = {
   SCREEN_MONTH: "SCREEN_MONTH",
 };
 
-export const ChangeMeetingStart = {
-  name: "New meeting",
-  typeMeeting: {
-    background: "122, 89, 240, 0.3",
-    color: "122, 89, 240, 1",
-    name: "Project meeting",
-  },
-  Date: [new Date().getFullYear(), new Date().getMonth(), new Date().getDate()],
-  timeStart: timeStart(),
-  timeEnd: timeEnd(),
-  // передавать даты нужно
-  location: "",
-  description: "",
-  key: uuidv4(),
-  completed: false,
-};
+export function ChangeMeetingStart() {
+  let result = {
+    name: "New meeting",
+    typeMeeting: {
+      background: "122, 89, 240, 0.3",
+      color: "122, 89, 240, 1",
+      name: "Project meeting",
+    },
+    Date: [
+      new Date().getFullYear(),
+      new Date().getMonth(),
+      new Date().getDate(),
+    ],
+    timeStart: timeStart(),
+    timeEnd: timeEnd(),
+    location: "",
+    description: "",
+    key: uuidv4(),
+    completed: false,
+  };
+  return result;
+}
+
 export const MeetingStart = [
   {
     name: "Test Meeting",
@@ -76,15 +83,15 @@ export const MeetingItems = [
   },
 ];
 
-function timeStart(){
-const dateAndTime = new Date()
-const start = dateAndTime.getHours()
-const end = dateAndTime.getMinutes()
-return [start, end]
+function timeStart() {
+  const dateAndTime = new Date();
+  const start = dateAndTime.getHours();
+  const end = dateAndTime.getMinutes();
+  return [start, end];
 }
-function timeEnd(){
-  const dateAndTime = new Date()
-  const start = dateAndTime.getHours()+1
-  const end = dateAndTime.getMinutes()
-  return [start, end]
+function timeEnd() {
+  const dateAndTime = new Date();
+  const start = dateAndTime.getHours() + 1;
+  const end = dateAndTime.getMinutes();
+  return [start, end];
 }
