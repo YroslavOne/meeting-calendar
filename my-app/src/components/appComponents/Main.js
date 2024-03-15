@@ -8,8 +8,6 @@ import { Plus } from "react-bootstrap-icons";
 
 function Main() {
   const { createWindow, actionsForMeeting } = useContext(Context);
-  // portal почитать
-  // isNewEventWindowOpened,setIsNewEventWindowOpened изменить в контексте
   return (
     <div>
       <div className="main-calendar-and-meetingtoday">
