@@ -1,14 +1,14 @@
-import React, { useContext, useState } from 'react';
-import Month from './weekOrMonth/Month.js';
-import Week from './weekOrMonth/Week.js';
-import { SCREEN } from '../../../Constants.js';
-import { Context } from '../../../Context.js';
-import './WeekOrMonth.css';
+import React, { useContext, useState } from "react";
+import Month from "./weekOrMonth/Month.js";
+import Week from "./weekOrMonth/Week.js";
+import { SCREEN } from "../../../Constants.js";
+import { Context } from "../../../Context.js";
+import "./WeekOrMonth.css";
 
 function WeekOrMonth(props) {
-  const { setDateForScreenOutput, dateForDisplay } = useContext(Context);
-  const [WeekForOutput, setWeekForOutput] = useState(''); // дни недели + месяц
-  const monthNow = dateForDisplay.toLocaleString('en', { month: 'long' });
+  const { setDateForScreenOutput, calendarBaseDate } = useContext(Context);
+  const [WeekForOutput, setWeekForOutput] = useState("");
+  const monthNow = calendarBaseDate.toLocaleString("en", { month: "long" });
 
   if (props.weekOrMonth === SCREEN.SCREEN_MONTH) {
     setDateForScreenOutput(monthNow);

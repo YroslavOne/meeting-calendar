@@ -5,8 +5,8 @@ import './Week.css';
 import MeetingItem from './weekItems/MeetingItem';
 
 function Week(props) {
-  const { meetingsAfterSearch, dateForDisplay } = useContext(Context);
-  let dateForCalculations = dateForDisplay;
+  const { meetingsAfterSearch, calendarBaseDate } = useContext(Context);
+  let dateForCalculations = calendarBaseDate;
 
   let oneMonth = MonthByDay(dateForCalculations);
 

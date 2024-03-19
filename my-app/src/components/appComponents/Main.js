@@ -7,13 +7,13 @@ import "./Main.css";
 import { Plus } from "react-bootstrap-icons";
 
 function Main() {
-  const { createWindow, actionsForMeeting } = useContext(Context);
+  const { meetingCreator, actionsForMeeting } = useContext(Context);
   return (
     <div>
       <div className="main-calendar-and-meetingtoday">
         <Calendar />
         <MeetingToday />
-        {createWindow && <CreateMeeting />}
+        {meetingCreator && <CreateMeeting />}
       </div>
       <div>
         <button

@@ -1,34 +1,32 @@
-import { useState, useContext } from 'react';
-import WeekOrMonth from './CalendarComponents/WeekOrMonth';
-import './Calendar.css';
-import { Context } from '../../Context';
-import { SCREEN } from '../../Constants';
-import { ChevronLeft, ChevronRight } from 'react-bootstrap-icons';
+import { useState, useContext } from "react";
+import WeekOrMonth from "./CalendarComponents/WeekOrMonth";
+import "./Calendar.css";
+import { Context } from "../../Context";
+import { SCREEN } from "../../Constants";
+import { ChevronLeft, ChevronRight } from "react-bootstrap-icons";
 
 function Calendar() {
-  const { dateForDisplay, setDateForDisplay, dateForScreenOutput } =
+  const { calendarBaseDate, setCalendarBaseDate, dateForScreenOutput } =
     useContext(Context);
   const [weekOrMonthInCalendar, setWeekOrMonthInCalendar] = useState(
     SCREEN.SCREEN_WEEK
   );
 
-  function flipThroughTheCalendar(leftOrRight) {
-    let date = dateForDisplay; //описание каждой переменной
-    // что хранит, поностью суть, прочитав название должен понять что внутри
+  function flipThroughTheCalendar(backOrNext) {
+    let date = calendarBaseDate;
     let updateDate;
     if (weekOrMonthInCalendar === SCREEN.SCREEN_MONTH) {
       updateDate =
-        leftOrRight === 'left'
+        backOrNext === "back"
           ? new Date(date.getFullYear(), date.getMonth() - 1, date.getDate())
           : new Date(date.getFullYear(), date.getMonth() + 1, date.getDate());
     } else if (weekOrMonthInCalendar === SCREEN.SCREEN_WEEK) {
       updateDate =
-        leftOrRight === 'left'
+        backOrNext === "back"
           ? new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7)
           : new Date(date.getFullYear(), date.getMonth(), date.getDate() + 7);
-      // setDateForDisplay(updateDate);
     }
-    setDateForDisplay(updateDate);
+    setCalendarBaseDate(updateDate);
   }
 
   return (
@@ -37,15 +35,15 @@ function Calendar() {
         <div className="calendar-button-date">
           <div className="calendar-button-left-rigth">
             <button
-              onClick={(e) => {
-                flipThroughTheCalendar('left');
+              onClick={() => {
+                flipThroughTheCalendar("back");
               }}
             >
               <ChevronLeft />
             </button>
             <button
-              onClick={(e) => {
-                flipThroughTheCalendar('right');
+              onClick={() => {
+                flipThroughTheCalendar("next");
               }}
             >
               <ChevronRight />

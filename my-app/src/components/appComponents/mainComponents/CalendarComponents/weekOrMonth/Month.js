@@ -5,7 +5,7 @@ import { Context } from "../../../../Context";
 import { v4 as uuidv4 } from "uuid";
 
 function Month() {
-  const { meetingsAfterSearch, actionsForMeeting, dateForDisplay } = useContext(Context);
+  const { meetingsAfterSearch, actionsForMeeting, calendarBaseDate, setDateForScreenOutput, weekOrMonth } = useContext(Context);
   const dayForWeek = [
     { dayWeek: "sun" },
     { dayWeek: "mon" },
@@ -16,9 +16,9 @@ function Month() {
     { dayWeek: "sat" },
   ];
 
-  let month = [];
 
-  let dateForCalculations = dateForDisplay;
+  let month = [];
+  let dateForCalculations = calendarBaseDate;
   let nowMonth = dateForCalculations.getMonth();
 
   let oneMonth = MonthByDay(dateForCalculations);

@@ -11,7 +11,7 @@ export const SCREEN = {
   SCREEN_MONTH: "SCREEN_MONTH",
 };
 
-export function ChangeMeetingStart() {
+export function CreateMeetingTemplate() {
   let result = {
     name: "New meeting",
     typeMeeting: {

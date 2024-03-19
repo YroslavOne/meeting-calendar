@@ -13,44 +13,44 @@ function CreateMeeting() {
   const {
     meetings,
     setMeetings,
-    changeRepository,
-    setChangeRepository,
-    ChangeMeetingStart,
+    meetingTemplate,
+    setMeetingTemplate,
+    CreateMeetingTemplate,
     newMeeting,
     setNewMeeting,
     interactionWithTask,
     setInteractionWithTask,
-    setCreateWindow,
+    setMeetingCreator,
   } = useContext(Context);
-  const [nameMeeting, setNameMeeting] = useState(changeRepository.name);
-  const [meetingType, setMeetingType] = useState(changeRepository.typeMeeting);
+  const [nameMeeting, setNameMeeting] = useState(meetingTemplate.name);
+  const [meetingType, setMeetingType] = useState(meetingTemplate.typeMeeting);
   const [selectedDate, setSelectedDate] = useState(
     new Date(
-      changeRepository.Date[0],
-      changeRepository.Date[1],
-      changeRepository.Date[2]
+      meetingTemplate.Date[0],
+      meetingTemplate.Date[1],
+      meetingTemplate.Date[2]
     )
   );
   let hoursTwoValueStart = Number(
-    String(changeRepository.timeStart[0]).length === 2
-      ? changeRepository.timeStart[0]
-      : "0" + changeRepository.timeStart[0]
+    String(meetingTemplate.timeStart[0]).length === 2
+      ? meetingTemplate.timeStart[0]
+      : "0" + meetingTemplate.timeStart[0]
   );
   let minutsTwoValueStart = Number(
-    String(changeRepository.timeStart[1]).length === 2
-      ? changeRepository.timeStart[1]
-      : "0" + changeRepository.timeStart[1]
+    String(meetingTemplate.timeStart[1]).length === 2
+      ? meetingTemplate.timeStart[1]
+      : "0" + meetingTemplate.timeStart[1]
   );
 
   let hoursTwoValueEnd = Number(
-    String(changeRepository.timeEnd[0]).length === 2
-      ? changeRepository.timeEnd[0]
-      : "0" + changeRepository.timeEnd[0]
+    String(meetingTemplate.timeEnd[0]).length === 2
+      ? meetingTemplate.timeEnd[0]
+      : "0" + meetingTemplate.timeEnd[0]
   );
   let minutsTwoValueEnd = Number(
-    String(changeRepository.timeEnd[1]).length === 2
-      ? changeRepository.timeEnd[1]
-      : "0" + changeRepository.timeEnd[1]
+    String(meetingTemplate.timeEnd[1]).length === 2
+      ? meetingTemplate.timeEnd[1]
+      : "0" + meetingTemplate.timeEnd[1]
   );
 
   const [selectedTimeStart, setSelectedTimeStart] = useState(
@@ -59,16 +59,16 @@ function CreateMeeting() {
   const [selectedTimeEnd, setSelectedTimeEnd] = useState(
     hoursTwoValueEnd + ":" + minutsTwoValueEnd
   );
-  const [addLocation, setAddLocation] = useState(changeRepository.location);
+  const [addLocation, setAddLocation] = useState(meetingTemplate.location);
   const [addDescription, setAddDescription] = useState(
-    changeRepository.description
+    meetingTemplate.description
   );
 
   function clickClose() {
     setInteractionWithTask(false);
     setNewMeeting(true);
-    setCreateWindow(false);
-    setChangeRepository(ChangeMeetingStart);
+    setMeetingCreator(false);
+    setMeetingTemplate(CreateMeetingTemplate);
   }
 
   function saveOrCreateMeeting(value) {
@@ -113,7 +113,7 @@ function CreateMeeting() {
   function searchItemMeeting() {
     let indexMeeting;
     meetings.map((meeting, index) => {
-      if (meeting.key === changeRepository.key) {
+      if (meeting.key === meetingTemplate.key) {
         indexMeeting = index;
       }
     });

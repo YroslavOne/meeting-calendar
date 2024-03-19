@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { ChangeMeetingStart, MeetingStart, MeetingItems } from "./Constants";
+import { CreateMeetingTemplate, MeetingStart, MeetingItems } from "./Constants";
 
 export const Context = React.createContext({
   meetings: "",
   setMeetings: () => {},
-  changeRepository: "",
-  setChangeRepository: () => {},
-  createWindow: "",
-  setCreateWindow: () => {},
-  dateForDisplay: "",
-  setDateForDisplay: () => {},
+  meetingTemplate: "",
+  setMeetingTemplate: () => {},
+  meetingCreator: "",
+  setMeetingCreator: () => {},
+  calendarBaseDate: "",
+  setCalendarBaseDate: () => {},
   newMeeting: "",
   setNewMeeting: () => {},
   interactionWithTask: "",
@@ -31,11 +31,11 @@ export const ContextProvider = ({ children }) => {
     JSON.parse(localStorage.MeetingItem)
   );
   const [meetingsAfterSearch, setMeetingsAfterSearch] = useState(meetings);
-  const [changeRepository, setChangeRepository] = useState(
-    ChangeMeetingStart()
+  const [meetingTemplate, setMeetingTemplate] = useState(
+    CreateMeetingTemplate()
   );
-  const [createWindow, setCreateWindow] = useState(false);
-  const [dateForDisplay, setDateForDisplay] = useState(new Date());
+  const [meetingCreator, setMeetingCreator] = useState(false);
+  const [calendarBaseDate, setCalendarBaseDate] = useState(new Date());
   const [newMeeting, setNewMeeting] = useState(true);
   const [interactionWithTask, setInteractionWithTask] = useState(false);
   const [dateForScreenOutput, setDateForScreenOutput] = useState("");
@@ -43,15 +43,15 @@ export const ContextProvider = ({ children }) => {
 
   function actionsForMeeting(key) {
     if (key === "none") {
-      setChangeRepository(ChangeMeetingStart());
-      setCreateWindow(true);
+      setMeetingTemplate(CreateMeetingTemplate());
+      setMeetingCreator(true);
     } else {
       meetings.map((meeting) => {
         if (meeting.key === key) {
           setInteractionWithTask(true);
-          setChangeRepository(meeting);
+          setMeetingTemplate(meeting);
           setNewMeeting(false);
-          setCreateWindow(true);
+          setMeetingCreator(true);
         }
       });
     }
@@ -80,17 +80,17 @@ export const ContextProvider = ({ children }) => {
         setMeetings,
         MeetingItems,
         actionsForMeeting,
-        changeRepository,
-        setChangeRepository,
-        createWindow,
-        setCreateWindow,
-        dateForDisplay,
-        setDateForDisplay,
+        meetingTemplate,
+        setMeetingTemplate,
+        meetingCreator,
+        setMeetingCreator,
+        calendarBaseDate,
+        setCalendarBaseDate,
         newMeeting,
         setNewMeeting,
         interactionWithTask,
         setInteractionWithTask,
-        ChangeMeetingStart,
+        CreateMeetingTemplate,
         dateForScreenOutput,
         setDateForScreenOutput,
         meetingsAfterSearch,
